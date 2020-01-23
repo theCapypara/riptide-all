@@ -9,19 +9,19 @@ with open(path.join(this_directory, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='riptide-all',
-    version='0.5.0rc1',
+    version='0.5.0',
     packages=[],
     description='Tool to manage development environments for web applications using containers - Meta Package',
     long_description=long_description,
     long_description_content_type='text/x-rst',
     url='https://github.com/Parakoopa/riptide-all/',
     install_requires=[
-        'riptide-lib >= 0.5.0rc1, < 0.6',
-        'riptide-cli >= 0.5.0rc1, < 0.6',
-        'riptide-proxy >= 0.5.0rc1, < 0.6',
-        'riptide-engine-docker >= 0.5.0rc1, < 0.6',
-        'riptide-db-mysql >= 0.5.0rc1, < 0.6',
-        'riptide-plugin-php-xdebug >= 0.5.0rc1, < 0.6'
+        'riptide-lib >= 0.5.0, < 0.6',
+        'riptide-cli >= 0.5.0, < 0.6',
+        'riptide-proxy >= 0.5.0, < 0.6',
+        'riptide-engine-docker >= 0.5.0, < 0.6',
+        'riptide-db-mysql >= 0.5.0, < 0.6',
+        'riptide-plugin-php-xdebug >= 0.5.0, < 0.6'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
