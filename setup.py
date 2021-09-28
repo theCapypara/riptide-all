@@ -1,4 +1,4 @@
-__version__ = '0.5.0'
+__version__ = '0.6.0'
 
 from setuptools import setup
 
@@ -18,12 +18,12 @@ setup(
     long_description_content_type='text/x-rst',
     url='https://github.com/Parakoopa/riptide-all/',
     install_requires=[
-        'riptide-lib >= 0.5.0, < 0.6',
-        'riptide-cli >= 0.5.0, < 0.6',
-        'riptide-proxy >= 0.5.0, < 0.6',
-        'riptide-engine-docker >= 0.5.0, < 0.6',
-        'riptide-db-mysql >= 0.5.0, < 0.6',
-        'riptide-plugin-php-xdebug >= 0.5.0, < 0.6'
+        'riptide-lib >= 0.6.0, < 0.7',
+        'riptide-cli >= 0.6.0, < 0.7',
+        'riptide-proxy >= 0.6.0, < 0.7',
+        'riptide-engine-docker >= 0.6.0, < 0.7',
+        'riptide-db-mysql >= 0.6.0, < 0.7',
+        'riptide-plugin-php-xdebug >= 0.6.0, < 0.7'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
