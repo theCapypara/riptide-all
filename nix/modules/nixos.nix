@@ -32,11 +32,7 @@ in
         nixpkgs.overlays = [ (import ../overlay.nix) ];
 
         system.userActivationScripts.activate-riptide = {
-          text = ''
-            ${activateScript}
-            touch '${configDir}/hosts'
-            chmod 644 '${configDir}/hosts'
-          '';
+          text = activateScript;
         };
 
         environment.systemPackages = [ packages ];
