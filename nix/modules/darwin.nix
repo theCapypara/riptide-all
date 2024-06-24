@@ -25,6 +25,8 @@ in
   options = (import ./options.nix) { inherit pkgs lib; };
 
   config = lib.mkIf cfg.enable {
+    nixpkgs.overlays = [ (import ../overlay.nix) ];
+
     launchd.user.agents.activate-riptide = {
       script = ''
         set -e

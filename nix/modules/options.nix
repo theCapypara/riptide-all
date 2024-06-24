@@ -85,7 +85,7 @@ in
       default = "";
       description = ''
         Override the docker/podman socket Riptide connects to. Only relevant if
-        `engine = "docker"`. Tries to auto-detect by default.
+        `engine.name = "docker"`. Tries to auto-detect by default.
       '';
     };
 

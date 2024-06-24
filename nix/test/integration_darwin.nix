@@ -1,13 +1,13 @@
 {
-  pkgs ? import <nixpkgs> {
-    inherit system;
-    config = { };
-    overlays = [ (import ../overlay.nix) ];
-  },
+  nixpkgs ? <nixpkgs>,
   system ? builtins.currentSystem,
   ...
 }:
 let
+  pkgs = import nixpkgs {
+    inherit system;
+    overlays = [ (import ../overlay.nix) ];
+  };
   testScript = pkgs.writeShellApplication {
     name = "riptide-integration";
     text = ''

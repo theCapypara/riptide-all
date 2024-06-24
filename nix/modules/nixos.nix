@@ -29,6 +29,8 @@ in
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
+        nixpkgs.overlays = [ (import ../overlay.nix) ];
+
         system.userActivationScripts.activate-riptide = {
           text = ''
             ${activateScript}

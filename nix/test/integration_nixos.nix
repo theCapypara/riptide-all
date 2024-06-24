@@ -1,11 +1,8 @@
 {
   nixpkgs ? <nixpkgs>,
-  pkgs ? import <nixpkgs> {
-    inherit system;
-    config = { };
-    overlays = [ (import ../overlay.nix) ];
-  },
+  pkgs ? import nixpkgs { inherit system; },
   system ? builtins.currentSystem,
+  ...
 }:
 pkgs.nixosTest {
   name = "riptide-integration";
