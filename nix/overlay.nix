@@ -12,8 +12,8 @@ final: prev: {
       riptide-plugin-php-xdebug = python-final.callPackage ./pkgs/riptide-plugin-php-xdebug.nix { };
       riptide-all = python-final.callPackage ./pkgs/riptide-all.nix { };
 
-      python-prctl = python-final.callPackage ./pkgs/python-prctl.nix { };
-      certauth = python-final.callPackage ./pkgs/certauth.nix { };
+      _riptide_python-prctl = python-final.callPackage ./pkgs/python-prctl.nix { };
+      _riptide_certauth = python-final.callPackage ./pkgs/certauth.nix { };
     })
   ];
 

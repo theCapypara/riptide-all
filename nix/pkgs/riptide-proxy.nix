@@ -6,8 +6,8 @@
   riptide-lib,
   click,
   tornado,
-  certauth,
-  python-prctl,
+  _riptide_certauth,
+  _riptide_python-prctl,
 }:
 buildPythonPackage {
   pname = "riptide-proxy";
@@ -23,8 +23,8 @@ buildPythonPackage {
     riptide-lib
     tornado
     click
-    certauth
-  ] ++ lib.optionals (stdenv.isLinux) [ python-prctl ];
+    _riptide_certauth
+  ] ++ lib.optionals (stdenv.isLinux) [ _riptide_python-prctl ];
 
   doCheck = false;
   pythonImportsCheck = [ "riptide_proxy" ];
