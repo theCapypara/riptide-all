@@ -1,6 +1,16 @@
 {
   mkShell,
   python312,
+  cargo,
+  rustc,
+  rustfmt,
+  clippy,
+  openssl,
+  pkg-config,
+  cargo-deny,
+  cargo-edit,
+  cargo-watch,
+  rust-analyzer,
   stdenv,
   lib,
 }:
@@ -19,7 +29,23 @@ mkShell {
         certauth
       ]
       ++ lib.optionals (stdenv.isLinux) [ (callPackage ./pkgs/python-prctl.nix { }) ]
-    );
+    )
+    ++
+      # # RUST
+      ([
+        cargo
+        rustc
+        rustfmt
+        clippy
+        openssl
+        pkg-config
+        cargo-deny
+        cargo-edit
+        cargo-watch
+        rust-analyzer
+      ])
+    ## OTHER
+    ++ [ stdenv.cc.cc.lib ];
 
   # Expsose venv for simpler integration with editors & IDEs.
   # This should be enough for IDEs & LSPs but may not be enough to run
