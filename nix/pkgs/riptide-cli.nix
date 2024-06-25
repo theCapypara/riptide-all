@@ -29,22 +29,37 @@ buildPythonPackage {
     packaging
   ];
 
-  # Call wrapping manually since we have some sourcable shell scripts that must not be wrapped, see below.
-  dontWrapPythonPrograms = true;
-
-  # Make the sourcable shell scripts non-executable before wrapping. That will skip them.
-  postFixup = ''
-    chmod -x $out/bin/riptide.hook.*
-    wrapPythonPrograms
-    chmod +x $out/bin/riptide.hook.*
-  '';
+  doCheck = false;
 
   # Not supported on Nix. Wouldn't make sense anyway.
   postInstall = ''
     rm $out/bin/riptide_upgrade
   '';
 
-  doCheck = false;
+  # Remove the original hook scripts, since they will be wrapped by python.buildEnv. Instead
+  # provide nix-riptide.hook.* variants that echo out the hooks when executed.
+  postFixup = ''
+    COMMON_HOOK_SRC=$(cat $out/bin/riptide.hook.common.sh)
+    BASH_HOOK_SRC="$COMMON_HOOK_SRC $(cat $out/bin/riptide.hook.bash | grep -v 'riptide.hook.common.sh')"
+    ZSH_HOOK_SRC="$COMMON_HOOK_SRC $(cat $out/bin/riptide.hook.zsh | grep -v 'riptide.hook.common.sh')"
+
+    echo '#!/usr/bin/env bash' > $out/bin/nix-riptide.hook.bash
+    printf 'cat <<'"'"'EOF'"'" >> $out/bin/nix-riptide.hook.bash
+    echo ' '>> $out/bin/nix-riptide.hook.bash
+    echo "$BASH_HOOK_SRC">> $out/bin/nix-riptide.hook.bash
+    echo 'EOF' >> $out/bin/nix-riptide.hook.bash
+    chmod +x $out/bin/nix-riptide.hook.bash
+
+    echo '#!/usr/bin/env bash' > $out/bin/nix-riptide.hook.zsh
+    printf 'cat <<'"'"'EOF'"'" >> $out/bin/nix-riptide.hook.zsh
+    echo ' '>> $out/bin/nix-riptide.hook.zsh
+    echo "$ZSH_HOOK_SRC">> $out/bin/nix-riptide.hook.zsh
+    echo 'EOF' >> $out/bin/nix-riptide.hook.zsh
+    chmod +x $out/bin/nix-riptide.hook.zsh
+
+    rm $out/bin/riptide.hook.*
+  '';
+
   pythonImportsCheck = [ "riptide_cli" ];
 
   meta = with lib; {

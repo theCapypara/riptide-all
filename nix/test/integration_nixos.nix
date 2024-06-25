@@ -19,6 +19,8 @@ pkgs.nixosTest {
       environment.systemPackages = [
         pkgs.file
         pkgs.curl
+        pkgs.which
+        pkgs.zsh
       ];
 
       virtualisation = {
@@ -135,8 +137,14 @@ pkgs.nixosTest {
       #output = system1.succeed("cat /tmp/4")
       #assert "127.0.0.9" in output, f"output: {output}"
 
-      system1.succeed("which riptide.hook.bash")
-      system1.succeed("which riptide.hook.zsh")
+      # make sure the shell integration scripts work
+      system1.succeed("which nix-riptide.hook.bash")
+      system1.succeed("bash -c 'echo $(nix-riptide.hook.bash) | grep PROMPT_COMMAND'")
+      system1.succeed("bash -c '. <(nix-riptide.hook.bash)'")
+      system1.succeed("which nix-riptide.hook.zsh")
+      system1.succeed("bash -c 'echo $(nix-riptide.hook.zsh) | grep riptide_cwdir_hook'")
+      system1.succeed("zsh -c '. <(nix-riptide.hook.zsh)'")
+
       system1.succeed("which riptide")
       system1.succeed("which riptide_proxy")
 

@@ -59,8 +59,8 @@
         # Can be added to zsh/bash etc.
         # Currently nix flake check warns on this, see: https://discourse.nixos.org/t/custom-flake-outputs-for-checks/18877/4
         riptideShellIntegration = {
-          zsh = ". riptide.hook.zsh";
-          bash = ". riptide.hook.bash";
+          zsh = ". <(nix-riptide.hook.zsh)";
+          bash = ". <(nix-riptide.hook.bash)";
         };
 
         checks =
