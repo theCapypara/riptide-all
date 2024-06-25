@@ -20,7 +20,9 @@ pkgs.symlinkJoin {
   ];
   nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
   postBuild = ''
-    wrapProgram $out/bin/riptide --set DOCKER_HOST ${lib.escapeShellArg cfg.dockerHost}
-    wrapProgram $out/bin/riptide_proxy --set DOCKER_HOST ${lib.escapeShellArg cfg.dockerHost}
+    wrapProgram $out/bin/riptide --set DOCKER_HOST ${lib.escapeShellArg cfg.dockerHost} --set RIPTIDE_SHELL_INTEGRATION_EXECUTABLE /run/current-system/sw/bin/_riptide-python
+    wrapProgram $out/bin/riptide_proxy --set DOCKER_HOST ${lib.escapeShellArg cfg.dockerHost} --set RIPTIDE_SHELL_INTEGRATION_EXECUTABLE /run/current-system/sw/bin/_riptide-python
+    # Expose a riptide-python to be used for shell integration, see also env variable used above.
+    cp $out/bin/python3 $out/bin/_riptide-python
   '';
 }

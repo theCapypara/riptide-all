@@ -147,6 +147,7 @@ pkgs.nixosTest {
 
       system1.succeed("which riptide")
       system1.succeed("which riptide_proxy")
+      system1.succeed("which _riptide-python")
 
       system1.succeed("curl http://127.0.0.1:8080")
       system1.succeed("curl -k https://127.0.0.1")

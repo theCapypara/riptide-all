@@ -31,11 +31,6 @@ in
       {
         nixpkgs.overlays = [ (import ../overlay.nix) ];
 
-        environment.variables = {
-          # This makes sure that generated shell integeration scripts don't break on updates.
-          RIPTIDE_SHELL_INTEGRATION_EXECUTABLE = "/run/current-system/sw/bin/riptide";
-        };
-
         system.userActivationScripts.activate-riptide = {
           text = activateScript;
         };
