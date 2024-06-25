@@ -29,6 +29,16 @@ buildPythonPackage {
     packaging
   ];
 
+  # Call wrapping manually since we have some sourcable shell scripts that must not be wrapped, see below.
+  dontWrapPythonPrograms = true;
+
+  # Make the sourcable shell scripts non-executable before wrapping. That will skip them.
+  postFixup = ''
+    chmod -x $out/bin/riptide.hook.*
+    wrapPythonPrograms
+    chmod +x $out/bin/riptide.hook.*
+  '';
+
   # Not supported on Nix. Wouldn't make sense anyway.
   postInstall = ''
     rm $out/bin/riptide_upgrade
