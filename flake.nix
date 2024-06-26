@@ -77,12 +77,7 @@
                     ./nix/test/integration_darwin.nix
                     {
                       _module.args = {
-                        pkgs = nixpkgs.lib.mkForce (
-                          import nixpkgs {
-                            inherit system;
-                            overlays = [ self.overlays.default ];
-                          }
-                        );
+                        inherit nixpkgs system;
                       };
                     }
                   ];

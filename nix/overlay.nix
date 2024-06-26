@@ -12,8 +12,9 @@ final: prev: {
       riptide-plugin-php-xdebug = python-final.callPackage ./pkgs/riptide-plugin-php-xdebug.nix { };
       riptide-all = python-final.callPackage ./pkgs/riptide-all.nix { };
 
-      _riptide_python-prctl = python-final.callPackage ./pkgs/python-prctl.nix { };
-      _riptide_certauth = python-final.callPackage ./pkgs/certauth.nix { };
+      cffi = python-final.callPackage ./pkgs/_forks/cffi/default.nix { };
+      _riptide_python-prctl = python-final.callPackage ./pkgs/_forks/python-prctl.nix { };
+      _riptide_certauth = python-final.callPackage ./pkgs/_forks/certauth.nix { };
     })
   ];
 

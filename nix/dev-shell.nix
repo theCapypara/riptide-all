@@ -28,7 +28,7 @@ mkShell {
         setuptools-rust
         certauth
       ]
-      ++ lib.optionals (stdenv.isLinux) [ (callPackage ./pkgs/python-prctl.nix { }) ]
+      ++ lib.optionals (stdenv.isLinux) [ (callPackage ./pkgs/_forks/python-prctl.nix { }) ]
     )
     ++
       # # RUST
