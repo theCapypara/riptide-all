@@ -11,13 +11,13 @@
   pycparser,
   pythonAtLeast,
 }:
-# XXX: 1.17.0rc1 due to some upstream fixes to clang support.
+# XXX: Port some fixes from 1.17.0rc1 back to fix clang issues on macOS
 if isPyPy then
   null
 else
   buildPythonPackage rec {
     pname = "cffi";
-    version = "1.17.0rc1";
+    version = "1.16.0";
     pyproject = true;
 
     src = fetchPypi {
@@ -37,6 +37,8 @@ else
       # deemed safe to trust in cffi.
       #
       ./darwin-use-libffi-closures.diff
+      # https://github.com/python-cffi/cffi/commit/39bdab23615a83c1001ed822f974ae52020201ba
+      ./avoid-null-pointer-subtraction-error.diff
     ];
 
     postPatch = lib.optionalString stdenv.isDarwin ''
