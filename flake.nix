@@ -30,18 +30,18 @@
         in
         {
           packages = {
-            configcrunch = pkgs.python3Packages.configcrunch;
-            riptide-lib = pkgs.python3Packages.riptide-lib;
-            riptide-cli = pkgs.python3Packages.riptide-lib;
-            riptide-proxy = pkgs.python3Packages.riptide-proxy;
-            riptide-engine-docker = pkgs.python3Packages.riptide-engine-docker;
-            riptide-engine-dummy = pkgs.python3Packages.riptide-engine-dummy;
-            riptide-db-mongo = pkgs.python3Packages.riptide-db-mongo;
-            riptide-db-mysql = pkgs.python3Packages.riptide-db-mysql;
-            riptide-plugin-php-xdebug = pkgs.python3Packages.riptide-plugin-php-xdebug;
-            riptide-all = pkgs.python3Packages.riptide-all;
-            default = pkgs.python3Packages.riptide-all;
-            inherit (pkgs) python3;
+            configcrunch = pkgs.python312Packages.configcrunch;
+            riptide-lib = pkgs.python312Packages.riptide-lib;
+            riptide-cli = pkgs.python312Packages.riptide-lib;
+            riptide-proxy = pkgs.python312Packages.riptide-proxy;
+            riptide-engine-docker = pkgs.python312Packages.riptide-engine-docker;
+            riptide-engine-dummy = pkgs.python312Packages.riptide-engine-dummy;
+            riptide-db-mongo = pkgs.python312Packages.riptide-db-mongo;
+            riptide-db-mysql = pkgs.python312Packages.riptide-db-mysql;
+            riptide-plugin-php-xdebug = pkgs.python312Packages.riptide-plugin-php-xdebug;
+            riptide-all = pkgs.python312Packages.riptide-all;
+            default = pkgs.python312Packages.riptide-all;
+            inherit (pkgs) python312;
           };
 
           devShells = {

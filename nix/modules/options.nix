@@ -15,7 +15,7 @@ let
             inherit default;
           };
           package = lib.mkPackageOption pkgs [
-            "python3Packages"
+            "python312Packages"
             pkgName
           ] { };
         };
@@ -31,7 +31,7 @@ in
       type = types.submodule {
         options = {
           package = lib.mkPackageOption pkgs [
-            "python3Packages"
+            "python312Packages"
             "riptide-cli"
           ] { };
         };
@@ -96,7 +96,7 @@ in
             default = true;
           };
           package = lib.mkPackageOption pkgs [
-            "python3Packages"
+            "python312Packages"
             "riptide-proxy"
           ] { };
 
@@ -169,7 +169,7 @@ in
             description = "Riptide engine implementation to use.";
           };
           package = lib.mkPackageOption pkgs [
-            "python3Packages"
+            "python312Packages"
             "riptide-engine-docker"
           ] { };
         };

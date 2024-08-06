@@ -9,22 +9,21 @@
   pyyaml,
   pytestCheckHook,
 }:
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "configcrunch";
-  version = "1.0.5";
+  version = "1.1.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/configcrunch.git";
-    ref = "refs/tags/1.0.5";
-    rev = "065acac7fb73c6aee17957714c8ff8a37f7e781a";
+    ref = "refs/tags/1.1.0.post1";
+    rev = "da31e6055147ee67e4e2130cb3d04aae06ee7454";
   };
 
-  cargoDeps = rustPlatform.importCargoLock {
-    lockFile = ./Cargo.lock;
-    outputHashes = {
-      "minijinja-0.8.2" = "sha256-IvyfWFu13clP65mvHhuaJ9Mtpe9Gwf0xVANMOxBx84E=";
-    };
+  cargoDeps = rustPlatform.fetchCargoTarball {
+    inherit src;
+    name = "${pname}-${version}";
+    hash = "sha256-eJeNq6cK5eFHTAE8mX6j3ZxqTV+FHQpq+7RvoyoMadc=";
   };
 
   nativeBuildInputs = [
@@ -39,12 +38,6 @@ buildPythonPackage {
     pytestCheckHook
     pyyaml
   ];
-  pytestFlagsArray = [ "tests/" ];
-
-  postPatch = ''
-    # to be able to run tests (include ymls) - XXX: should probably be fixed upstream
-    echo "recursive-include configcrunch/tests *" >> MANIFEST.in
-  '';
 
   preCheck = ''
     # pytestCheckHook puts . at the front of Python's sys.path, due to:
@@ -52,7 +45,6 @@ buildPythonPackage {
     # So we need to prevent pytest from trying to import configfrunch from
     # ./configfrunch, which contains the sources but not the newly built module.
     # We want it to import configfrunch from the nix store via $PYTHONPATH instead.
-    mv configcrunch/tests tests
     rm -r configcrunch
   '';
 
