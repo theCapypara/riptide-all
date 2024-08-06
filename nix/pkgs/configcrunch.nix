@@ -8,6 +8,8 @@
   schema,
   pyyaml,
   pytestCheckHook,
+  iconv,
+  stdenv,
 }:
 buildPythonPackage rec {
   pname = "configcrunch";
@@ -32,6 +34,10 @@ buildPythonPackage rec {
     cargo
     rustc
   ];
+
+  # https://github.com/nix-community/home-manager/issues/3482
+  buildInputs = [ ] ++ lib.optionals stdenv.isDarwin [ iconv ];
+
   propagatedBuildInputs = [ schema ];
 
   nativeCheckInputs = [

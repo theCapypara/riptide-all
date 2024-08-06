@@ -12,7 +12,7 @@ def main():
 
     config = json.loads(config)
 
-    if hosts_file == "":
+    if hosts_file == "NONE":
         update_hosts_file_value = config["resolveProjectHosts"]
     else:
         update_hosts_file_value = hosts_file if config["resolveProjectHosts"] else False

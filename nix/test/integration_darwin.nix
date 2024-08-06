@@ -8,23 +8,11 @@ let
     inherit system;
     overlays = [ (import ../overlay.nix) ];
   };
-  testScript = pkgs.writeShellApplication {
-    name = "riptide-integration";
-    text = ''
-      exit 1
-    '';
-  };
 in
 {
   imports = [ ../modules/darwin.nix ];
 
-  services.nix-daemon.enable = true;
-
-  environment.systemPackages = [ testScript ];
-
-  system.activationScripts.checks.text = ''
-    testScript
-  '';
+  # TODO: We don't actually test that Riptide is working yet.
 
   users = {
     knownUsers = [ "nixriptidetester" ];

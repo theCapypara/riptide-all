@@ -16,7 +16,7 @@ let
       pkgs
       lib
       ;
-    hostsFile = "";
+    hostsFile = "NONE";
   };
 
   packages = (import ./system-packages.nix) { inherit lib cfg pkgs; };
