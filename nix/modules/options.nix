@@ -16,7 +16,7 @@ let
       inherit description;
       type = types.submodule {
         options = {
-          enable = lib.mkEnableOption "Enable this package" // {
+          enable = lib.mkEnableOption "this package" // {
             inherit default;
           };
           package = lib.mkPackageOption python312Packages pkgName { };
