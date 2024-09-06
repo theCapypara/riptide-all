@@ -1,4 +1,8 @@
-{ lib, pkgs }:
+{
+  lib,
+  python312Packages,
+  formats,
+}:
 let
   inherit (lib) types;
 
@@ -9,15 +13,13 @@ let
       default,
     }:
     lib.mkOption {
+      inherit description;
       type = types.submodule {
         options = {
-          enable = lib.mkEnableOption description // {
+          enable = lib.mkEnableOption "Enable this package" // {
             inherit default;
           };
-          package = lib.mkPackageOption pkgs [
-            "python312Packages"
-            pkgName
-          ] { };
+          package = lib.mkPackageOption python312Packages pkgName { };
         };
       };
       default = { };
@@ -28,18 +30,17 @@ in
     enable = lib.mkEnableOption "Riptide general service and CLI";
 
     cli = lib.mkOption {
+      description = "CLI settings";
       type = types.submodule {
         options = {
-          package = lib.mkPackageOption pkgs [
-            "python312Packages"
-            "riptide-cli"
-          ] { };
+          package = lib.mkPackageOption python312Packages "riptide-cli" { };
         };
       };
       default = { };
     };
 
     dbDrivers = lib.mkOption {
+      description = "Database driver settings";
       type = types.submodule {
         options = {
           mysql = mkSimplePackageSwitch {
@@ -58,6 +59,7 @@ in
     };
 
     plugins = lib.mkOption {
+      description = "Plugin settings";
       type = types.submodule {
         options = {
           phpXdebug = mkSimplePackageSwitch {
@@ -90,15 +92,13 @@ in
     };
 
     proxy = lib.mkOption {
+      description = "Settings regarding Riptide's proxy server";
       type = types.submodule {
         options = {
           enable = lib.mkEnableOption "Riptide Proxy Server" // {
             default = true;
           };
-          package = lib.mkPackageOption pkgs [
-            "python312Packages"
-            "riptide-proxy"
-          ] { };
+          package = lib.mkPackageOption python312Packages "riptide-proxy" { };
 
           url = lib.mkOption {
             type = types.str;
@@ -111,6 +111,7 @@ in
           };
 
           ports = lib.mkOption {
+            description = "Proxy Server port configuration";
             type = types.submodule {
               options = {
                 http = lib.mkOption {
@@ -123,7 +124,7 @@ in
                   type = types.port;
                   example = 443;
                   default = 443;
-                  description = "The HTTPS port the proxy server should bind to.";
+                  description = "The HTTPS port the proxy server should bind to";
                 };
               };
             };
@@ -133,7 +134,7 @@ in
           autostart = lib.mkOption {
             type = types.bool;
             default = true;
-            description = "Enable or disable auto-starting when a project or service is not running.";
+            description = "Enable or disable auto-starting when a project or service is not running";
           };
         };
       };
@@ -147,7 +148,7 @@ in
         "https://github.com/theCapypara/riptide-repo.git"
         "https://github.com/foobar/repo.git"
       ];
-      description = "List of Riptide repositories. By default this contains the public community repository.";
+      description = "List of Riptide repositories. By default this contains the public community repository";
     };
 
     resolveProjectHosts = lib.mkOption {
@@ -161,26 +162,24 @@ in
     };
 
     engine = lib.mkOption {
+      description = "Settings regarding Riptide's backend engine";
       type = types.submodule {
         options = {
           name = lib.mkOption {
             type = types.str;
             default = "docker";
-            description = "Riptide engine implementation to use.";
+            description = "Riptide engine implementation to use";
           };
-          package = lib.mkPackageOption pkgs [
-            "python312Packages"
-            "riptide-engine-docker"
-          ] { };
+          package = lib.mkPackageOption python312Packages "riptide-engine-docker" { };
         };
       };
       default = { };
     };
 
     extraConfig = lib.mkOption {
-      description = "Additional configuration to merge into the system configuration.";
+      description = "Additional configuration to merge into the system configuration";
       type = types.submodule {
-        freeformType = (pkgs.formats.json { }).type;
+        freeformType = (formats.json { }).type;
         options = { };
       };
       default = { };

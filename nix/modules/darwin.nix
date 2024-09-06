@@ -22,7 +22,10 @@ let
   packages = (import ./system-packages.nix) { inherit lib cfg pkgs; };
 in
 {
-  options = (import ./options.nix) { inherit pkgs lib; };
+  options = (import ./options.nix) {
+    inherit lib;
+    inherit (pkgs) formats python312Packages;
+  };
 
   config = lib.mkIf cfg.enable {
     nixpkgs.overlays = [ (import ../overlay.nix) ];

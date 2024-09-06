@@ -32,7 +32,7 @@
           packages = {
             configcrunch = pkgs.python312Packages.configcrunch;
             riptide-lib = pkgs.python312Packages.riptide-lib;
-            riptide-cli = pkgs.python312Packages.riptide-lib;
+            riptide-cli = pkgs.python312Packages.riptide-cli;
             riptide-proxy = pkgs.python312Packages.riptide-proxy;
             riptide-engine-docker = pkgs.python312Packages.riptide-engine-docker;
             riptide-engine-dummy = pkgs.python312Packages.riptide-engine-dummy;
