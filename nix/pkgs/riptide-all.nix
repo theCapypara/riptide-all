@@ -12,12 +12,12 @@
 
 buildPythonPackage {
   pname = "riptide-all";
-  version = "0.8.0";
+  version = "0.9.0";
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-all.git";
-    ref = "refs/tags/0.8.0";
-    rev = "43bb985ac56fd687ef3c2ac94818d3b7e2606f07";
+    #ref = "refs/tags/0.9.0";
+    rev = "030b4032933e548358db262b8943a3a3517bac38";
   };
 
   propagatedBuildInputs = [
