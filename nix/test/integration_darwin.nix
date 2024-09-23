@@ -30,7 +30,7 @@ in
     user = "nixriptidetester";
     engine = {
       name = "dummy";
-      package = pkgs.python312Packages.riptide-engine-dummy;
+      package = pkgs.python313Packages.riptide-engine-dummy;
     };
     proxy = {
       enable = true;

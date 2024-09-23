@@ -12,7 +12,7 @@ let
     dontUnpack = true;
 
     nativeBuildInputs = [
-      (pkgs.python312.withPackages (python-pkgs: [
+      (pkgs.python313.withPackages (python-pkgs: [
         python-pkgs.pyyaml
         python-pkgs.mergedeep
       ]))

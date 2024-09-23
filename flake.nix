@@ -2,7 +2,7 @@
   description = "Riptide - Tool to manage development environments for web applications using containers";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,18 +30,18 @@
         in
         {
           packages = {
-            configcrunch = pkgs.python312Packages.configcrunch;
-            riptide-lib = pkgs.python312Packages.riptide-lib;
-            riptide-cli = pkgs.python312Packages.riptide-cli;
-            riptide-proxy = pkgs.python312Packages.riptide-proxy;
-            riptide-engine-docker = pkgs.python312Packages.riptide-engine-docker;
-            riptide-engine-dummy = pkgs.python312Packages.riptide-engine-dummy;
-            riptide-db-mongo = pkgs.python312Packages.riptide-db-mongo;
-            riptide-db-mysql = pkgs.python312Packages.riptide-db-mysql;
-            riptide-plugin-php-xdebug = pkgs.python312Packages.riptide-plugin-php-xdebug;
-            riptide-all = pkgs.python312Packages.riptide-all;
-            default = pkgs.python312Packages.riptide-all;
-            inherit (pkgs) python312;
+            configcrunch = pkgs.python313Packages.configcrunch;
+            riptide-lib = pkgs.python313Packages.riptide-lib;
+            riptide-cli = pkgs.python313Packages.riptide-cli;
+            riptide-proxy = pkgs.python313Packages.riptide-proxy;
+            riptide-engine-docker = pkgs.python313Packages.riptide-engine-docker;
+            riptide-engine-dummy = pkgs.python313Packages.riptide-engine-dummy;
+            riptide-db-mongo = pkgs.python313Packages.riptide-db-mongo;
+            riptide-db-mysql = pkgs.python313Packages.riptide-db-mysql;
+            riptide-plugin-php-xdebug = pkgs.python313Packages.riptide-plugin-php-xdebug;
+            riptide-all = pkgs.python313Packages.riptide-all;
+            default = pkgs.python313Packages.riptide-all;
+            inherit (pkgs) python313;
           };
 
           devShells = {

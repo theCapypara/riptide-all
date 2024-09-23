@@ -3,7 +3,7 @@
   buildPythonPackage,
 
   riptide-lib,
-  docker,
+  _riptide_python-docker,
 }:
 
 buildPythonPackage {
@@ -18,7 +18,7 @@ buildPythonPackage {
 
   propagatedBuildInputs = [
     riptide-lib
-    docker
+    _riptide_python-docker
   ];
 
   doCheck = false;

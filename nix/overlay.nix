@@ -14,17 +14,22 @@ final: prev: {
 
       _riptide_python-prctl = python-final.callPackage ./pkgs/_forks/python-prctl.nix { };
       _riptide_certauth = python-final.callPackage ./pkgs/_forks/certauth.nix { };
+      _riptide_python-docker = python-final.callPackage ./pkgs/_forks/python-docker.nix { };
+      bcrypt = python-final.callPackage ./pkgs/_forks/python-bcrypt.nix { };
+      python-dotenv = python-final.callPackage ./pkgs/_forks/python-dotenv.nix { };
+      tqdm = python-final.callPackage ./pkgs/_forks/tqdm.nix { };
+      greenlet = python-final.callPackage ./pkgs/_forks/greenlet.nix { };
     })
   ];
 
-  python312 =
+  python313 =
     let
-      self = prev.python312.override {
+      self = prev.python313.override {
         inherit self;
         packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
       };
     in
     self;
 
-  python312Packages = final.python312.pkgs;
+  python313Packages = final.python313.pkgs;
 }
