@@ -67,6 +67,15 @@ Meta Package
 
 Installing this package will install all Riptide components in the matching version numbers.
 
+Nix Flake
+---------
+
+This repository additionally contains a Nix Flake for installing and configuring Riptide on
+NixOS and on macOS via nix-darwin. See the documentation for more information:
+
+- `NixOS module <http://riptide-docs.readthedocs.io/en/latest/installation/linux_nixos.html>`
+- `nix-darwin module <http://riptide-docs.readthedocs.io/en/latest/installation/macos_nix_darwin.html>`
+
 Documentation
 -------------
 
