@@ -14,7 +14,7 @@ buildPythonPackage {
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-db-mysql.git";
-    #ref = "refs/tags/0.9.0";
+    ref = "refs/tags/0.9.0";
     rev = "dff15971f07a946efcb203c2f432ea490b39702a";
   };
 

@@ -14,7 +14,7 @@ buildPythonPackage {
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-engine-docker.git";
-    #ref = "refs/tags/0.9.0";
+    ref = "refs/tags/0.9.0";
     rev = "08f47c95d42b404e817c4bbf8534cf28154147db";
   };
 
