@@ -2,6 +2,7 @@
   stdenv,
   lib,
   buildPythonPackage,
+  setuptools,
 
   riptide-lib,
   click,
@@ -19,6 +20,8 @@ buildPythonPackage {
     #ref = "refs/tags/0.9.0";
     rev = "5266df750bfbace3725a906330676aebca9c46f9";
   };
+
+  nativeBuildInputs = [ setuptools ];
 
   propagatedBuildInputs = [
     riptide-lib

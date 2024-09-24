@@ -1,6 +1,7 @@
 {
   lib,
   buildPythonPackage,
+  setuptools,
 
   riptide-lib,
   docker,
@@ -16,6 +17,8 @@ buildPythonPackage {
     #ref = "refs/tags/0.9.0";
     rev = "59fbe2ee6d0686c870a6f59838c6fbfbf4bbd154";
   };
+
+  nativeBuildInputs = [ setuptools ];
 
   propagatedBuildInputs = [
     riptide-lib

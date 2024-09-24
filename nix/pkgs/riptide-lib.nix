@@ -1,6 +1,7 @@
 {
   lib,
   buildPythonPackage,
+  setuptools,
 
   configcrunch,
   schema,
@@ -23,6 +24,8 @@ buildPythonPackage {
     #ref = "refs/tags/0.9.0";
     rev = "e332408038f990ae38a3a60acbea46ca0111faf8";
   };
+
+  nativeBuildInputs = [ setuptools ];
 
   propagatedBuildInputs = [
     configcrunch
