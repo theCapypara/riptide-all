@@ -1,7 +1,6 @@
 {
   lib,
   buildPythonPackage,
-  fetchFromGitHub,
   setuptools,
   pyopenssl,
   pytestCheckHook,
@@ -17,11 +16,9 @@ buildPythonPackage {
 
   disabled = pythonOlder "3.7";
 
-  src = fetchFromGitHub {
-    owner = "theCapypara";
-    repo = "certauth";
-    rev = "5fdc45c23e373228c5519a650ceba5d88b909cc7";
-    hash = "sha256-INafbJ1UmjXaBw6J5oambwacny5yzukNRbGr30/xGYs=";
+  src = fetchGit {
+    url = "https://github.com/theCapypara/certauth.git";
+    rev = "e7eb7f3063f3df0198ef0a5b7cac13a28ef64f26";
   };
 
   postPatch = ''

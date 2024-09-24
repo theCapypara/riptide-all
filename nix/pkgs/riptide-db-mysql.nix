@@ -15,7 +15,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-db-mysql.git";
     #ref = "refs/tags/0.9.0";
-    rev = "0e4b7aed135834bc6b3942fcd0403297dd2afa23";
+    rev = "dff15971f07a946efcb203c2f432ea490b39702a";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -32,6 +32,5 @@ buildPythonPackage {
     homepage = "https://github.com/theCapypara/riptide-db-mysql";
     description = "Tool to manage development environments for web applications using containers - MySQL database driver";
     license = licenses.mit;
-    maintainers = with maintainers; [ theCapypara ];
   };
 }

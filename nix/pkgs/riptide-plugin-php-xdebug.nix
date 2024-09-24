@@ -16,7 +16,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-plugin-php-xdebug.git";
     #ref = "refs/tags/0.9.0";
-    rev = "9dfd7535f38ebb4c767e2c8eee8d1783f2ee2d01";
+    rev = "adb794a4d3b0913ea6bcfadb0dc5fe0eade5cd2a";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -34,6 +34,5 @@ buildPythonPackage {
     homepage = "https://github.com/theCapypara/riptide-plugin-php-xdebug";
     description = "Tool to manage development environments for web applications using containers - Plugin to toggle PHP Xdebug";
     license = licenses.mit;
-    maintainers = with maintainers; [ theCapypara ];
   };
 }

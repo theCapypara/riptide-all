@@ -19,7 +19,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-all.git";
     #ref = "refs/tags/0.9.0";
-    rev = "c5bbc21ced8ed3eb9afd38604dc2ec815c12e9c1";
+    rev = "3cdfae33fb6c134cac1f8169aca219d432d11932";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -40,6 +40,5 @@ buildPythonPackage {
     homepage = "https://github.com/theCapypara/riptide-all";
     description = "Tool to manage development environments for web applications using containers - Metapackage";
     license = licenses.mit;
-    maintainers = with maintainers; [ theCapypara ];
   };
 }

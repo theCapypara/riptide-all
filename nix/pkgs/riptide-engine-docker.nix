@@ -15,7 +15,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-engine-docker.git";
     #ref = "refs/tags/0.9.0";
-    rev = "59fbe2ee6d0686c870a6f59838c6fbfbf4bbd154";
+    rev = "08f47c95d42b404e817c4bbf8534cf28154147db";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -35,6 +35,5 @@ buildPythonPackage {
     homepage = "https://github.com/theCapypara/riptide-engine-docker";
     description = "Tool to manage development environments for web applications using containers - Docker Implementation";
     license = licenses.mit;
-    maintainers = with maintainers; [ theCapypara ];
   };
 }

@@ -14,7 +14,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-engine-dummy.git";
     #ref = "refs/tags/0.9.0";
-    rev = "4a17366fc1aa7b8650190978756d325e53b5fa38";
+    rev = "77e345595b07b55510042ad655b9fcac6a153988";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -28,6 +28,5 @@ buildPythonPackage {
     homepage = "https://github.com/theCapypara/riptide-engine-dummy";
     description = "Dummy Riptide engine implementation for tests";
     license = licenses.mit;
-    maintainers = with maintainers; [ theCapypara ];
   };
 }

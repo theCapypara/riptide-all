@@ -19,7 +19,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-cli.git";
     #ref = "refs/tags/0.9.0";
-    rev = "4af62106e5c8f8864cc66a299c6945d7e3b7b2a0";
+    rev = "590dbb948c9385ac88fde534dc4790fb3f8da89b";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -70,7 +70,6 @@ buildPythonPackage {
     homepage = "https://github.com/theCapypara/riptide-cli";
     description = "Tool to manage development environments for web applications using containers - CLI-Application";
     license = licenses.mit;
-    maintainers = with maintainers; [ theCapypara ];
     mainProgram = "riptide";
   };
 }

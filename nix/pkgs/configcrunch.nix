@@ -62,6 +62,5 @@ buildPythonPackage rec {
     homepage = "https://github.com/theCapypara/configcrunch";
     description = "Configuration parser based on YAML-Files with support for variables, overlaying and hierarchies";
     license = licenses.mit;
-    maintainers = with maintainers; [ theCapypara ];
   };
 }
