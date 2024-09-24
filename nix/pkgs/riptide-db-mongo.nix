@@ -13,7 +13,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-db-mongo.git";
     #ref = "refs/tags/0.9.0";
-    rev = "55eecff44353cedb0f73b098ae88d1d1f21f67f6";
+    rev = "cfbdbc6f28d062efb36a021ccf7ac86ce393dc0d";
   };
 
   propagatedBuildInputs = [

@@ -14,7 +14,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-plugin-php-xdebug.git";
     #ref = "refs/tags/0.9.0";
-    rev = "1696a7638c2e77ab6d4f717202b8f88b4280fefd";
+    rev = "9dfd7535f38ebb4c767e2c8eee8d1783f2ee2d01";
   };
 
   propagatedBuildInputs = [

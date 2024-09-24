@@ -12,7 +12,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-engine-dummy.git";
     #ref = "refs/tags/0.9.0";
-    rev = "ad2a05723fb167b0e7f2805bbd314cf511345822";
+    rev = "4a17366fc1aa7b8650190978756d325e53b5fa38";
   };
 
   propagatedBuildInputs = [ riptide-lib ];

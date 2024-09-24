@@ -13,7 +13,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-db-mysql.git";
     #ref = "refs/tags/0.9.0";
-    rev = "c298524f18c03a4b8fdbc2685db4db525fef92b6";
+    rev = "0e4b7aed135834bc6b3942fcd0403297dd2afa23";
   };
 
   propagatedBuildInputs = [

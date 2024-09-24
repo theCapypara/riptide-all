@@ -17,7 +17,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-all.git";
     #ref = "refs/tags/0.9.0";
-    rev = "030b4032933e548358db262b8943a3a3517bac38";
+    rev = "c5bbc21ced8ed3eb9afd38604dc2ec815c12e9c1";
   };
 
   propagatedBuildInputs = [

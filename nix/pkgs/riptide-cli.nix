@@ -17,7 +17,7 @@ buildPythonPackage {
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-cli.git";
     #ref = "refs/tags/0.9.0";
-    rev = "75a54f641f9ad2cb519819757b3c2537ffb0bdd4";
+    rev = "4af62106e5c8f8864cc66a299c6945d7e3b7b2a0";
   };
 
   propagatedBuildInputs = [
