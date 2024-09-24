@@ -9,6 +9,7 @@
 buildPythonPackage {
   pname = "riptide-db-mongo";
   version = "0.9.0";
+  pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-db-mongo.git";

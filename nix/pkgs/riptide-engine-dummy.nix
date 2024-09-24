@@ -8,6 +8,7 @@
 buildPythonPackage {
   pname = "riptide-engine-dummy";
   version = "0.9.0";
+  pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-engine-dummy.git";

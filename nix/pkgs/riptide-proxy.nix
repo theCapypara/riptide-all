@@ -12,6 +12,7 @@
 buildPythonPackage {
   pname = "riptide-proxy";
   version = "0.9.0";
+  pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-proxy.git";

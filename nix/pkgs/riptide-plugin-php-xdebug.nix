@@ -10,6 +10,7 @@
 buildPythonPackage {
   pname = "riptide-plugin-php-xdebug";
   version = "0.9.0";
+  pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-plugin-php-xdebug.git";

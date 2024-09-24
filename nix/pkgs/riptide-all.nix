@@ -13,6 +13,7 @@
 buildPythonPackage {
   pname = "riptide-all";
   version = "0.9.0";
+  pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-all.git";
