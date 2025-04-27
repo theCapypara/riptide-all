@@ -14,15 +14,15 @@
   python-dotenv,
 }:
 
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "riptide-lib";
-  version = "0.9.0";
+  version = "0.9.2";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-lib.git";
-    ref = "refs/tags/0.9.1";
-    rev = "cc01bcca9fe82584c44a85f366b3899868917448";
+    ref = "refs/tags/${version}";
+    rev = "5d8010e0c609d944f0c02535f216ccd22ab21e58";
   };
 
   nativeBuildInputs = [ setuptools ];

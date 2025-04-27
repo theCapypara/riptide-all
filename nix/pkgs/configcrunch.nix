@@ -18,7 +18,7 @@ buildPythonPackage rec {
 
   src = fetchGit {
     url = "https://github.com/theCapypara/configcrunch.git";
-    ref = "refs/tags/1.1.0.post1";
+    ref = "refs/tags/${version}";
     rev = "da31e6055147ee67e4e2130cb3d04aae06ee7454";
   };
 

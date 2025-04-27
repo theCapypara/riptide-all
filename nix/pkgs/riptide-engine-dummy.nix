@@ -6,14 +6,14 @@
   riptide-lib,
 }:
 
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "riptide-engine-dummy";
   version = "0.9.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-engine-dummy.git";
-    ref = "refs/tags/0.9.0";
+    ref = "refs/tags/${version}";
     rev = "77e345595b07b55510042ad655b9fcac6a153988";
   };
 

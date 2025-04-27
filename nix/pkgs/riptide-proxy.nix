@@ -10,14 +10,14 @@
   _riptide_certauth,
   _riptide_python-prctl,
 }:
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "riptide-proxy";
-  version = "0.9.0";
+  version = "0.9.1";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-proxy.git";
-    ref = "refs/tags/0.9.1";
+    ref = "refs/tags/${version}";
     rev = "a81b084625aef4165fee119b81c0bc7605aac42c";
   };
 

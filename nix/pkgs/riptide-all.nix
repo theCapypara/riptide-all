@@ -11,14 +11,14 @@
   riptide-plugin-php-xdebug,
 }:
 
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "riptide-all";
   version = "0.9.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-all.git";
-    ref = "refs/tags/0.9.0";
+    ref = "refs/tags/${version}";
     rev = "9509dd2dbc5d03b706c857b4d9aad7ea07dcb892";
   };
 
