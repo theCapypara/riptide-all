@@ -13,19 +13,20 @@
 }:
 buildPythonPackage rec {
   pname = "configcrunch";
-  version = "1.1.0";
+  version = "1.2.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/configcrunch.git";
-    ref = "refs/tags/${version}";
-    rev = "da31e6055147ee67e4e2130cb3d04aae06ee7454";
+    # TODO
+    #ref = "refs/tags/${version}";
+    rev = "880021564a62607faa8274db269441305930aa7a";
   };
 
   cargoDeps = rustPlatform.fetchCargoVendor {
     inherit src;
     name = "${pname}-${version}";
-    hash = "sha256-P7uLOnt9vPELjNlaJLELYBksaGYgErgsy6dzOildcm8=";
+    hash = "sha256-gvI3qt0sb/xLPvdeOcTPaT8Kjr9BF7m0d4BsceWTiA0=";
   };
 
   nativeBuildInputs = [
@@ -47,9 +48,9 @@ buildPythonPackage rec {
   preCheck = ''
     # pytestCheckHook puts . at the front of Python's sys.path, due to:
     # https://github.com/NixOS/nixpkgs/issues/255262
-    # So we need to prevent pytest from trying to import configfrunch from
-    # ./configfrunch, which contains the sources but not the newly built module.
-    # We want it to import configfrunch from the nix store via $PYTHONPATH instead.
+    # So we need to prevent pytest from trying to import configcrunch from
+    # ./configcrunch, which contains the sources but not the newly built module.
+    # We want it to import configcrunch from the nix store via $PYTHONPATH instead.
     rm -r configcrunch
   '';
 

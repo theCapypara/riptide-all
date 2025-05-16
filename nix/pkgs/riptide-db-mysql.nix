@@ -9,13 +9,14 @@
 
 buildPythonPackage rec {
   pname = "riptide-db-mysql";
-  version = "0.9.0";
+  version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-db-mysql.git";
-    ref = "refs/tags/${version}";
-    rev = "dff15971f07a946efcb203c2f432ea490b39702a";
+    # TODO
+    #ref = "refs/tags/${version}";
+    rev = "2dbc0864122464a7740d00b43dd295e6a6e7374a";
   };
 
   nativeBuildInputs = [ setuptools ];
