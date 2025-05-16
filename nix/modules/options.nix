@@ -1,6 +1,6 @@
 {
   lib,
-  python312Packages,
+  python313Packages,
   formats,
 }:
 let
@@ -19,7 +19,7 @@ let
           enable = lib.mkEnableOption "this package" // {
             inherit default;
           };
-          package = lib.mkPackageOption python312Packages pkgName { };
+          package = lib.mkPackageOption python313Packages pkgName { };
         };
       };
       default = { };
@@ -33,7 +33,7 @@ in
       description = "CLI settings";
       type = types.submodule {
         options = {
-          package = lib.mkPackageOption python312Packages "riptide-cli" { };
+          package = lib.mkPackageOption python313Packages "riptide-cli" { };
         };
       };
       default = { };
@@ -98,7 +98,7 @@ in
           enable = lib.mkEnableOption "Riptide Proxy Server" // {
             default = true;
           };
-          package = lib.mkPackageOption python312Packages "riptide-proxy" { };
+          package = lib.mkPackageOption python313Packages "riptide-proxy" { };
 
           url = lib.mkOption {
             type = types.str;
@@ -170,7 +170,7 @@ in
             default = "docker";
             description = "Riptide engine implementation to use";
           };
-          package = lib.mkPackageOption python312Packages "riptide-engine-docker" { };
+          package = lib.mkPackageOption python313Packages "riptide-engine-docker" { };
         };
       };
       default = { };

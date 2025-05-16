@@ -1,6 +1,6 @@
 {
   mkShell,
-  python312,
+  python313,
   cargo,
   rustc,
   rustfmt,
@@ -19,9 +19,9 @@ mkShell {
 
   packages =
     # PYTHON
-    [ python312 ]
+    [ python313 ]
     ++ (
-      with python312.pkgs;
+      with python313.pkgs;
       [
         pip
         setuptools
@@ -62,7 +62,7 @@ mkShell {
       python3.12 -m venv $VENV
     fi
     source $VENV/bin/activate
-    export PYTHONPATH=`pwd`/$VENV/${python312.sitePackages}/:$PYTHONPATH
+    export PYTHONPATH=`pwd`/$VENV/${python313.sitePackages}/:$PYTHONPATH
     # Link all packages
     ( IFS=:
       for p in $PYTHONPATH; do

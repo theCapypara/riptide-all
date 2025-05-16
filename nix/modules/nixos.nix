@@ -26,7 +26,7 @@ in
 {
   options = (import ./options.nix) {
     inherit lib;
-    inherit (pkgs) formats python312Packages;
+    inherit (pkgs) formats python313Packages;
   };
 
   config = lib.mkIf cfg.enable (

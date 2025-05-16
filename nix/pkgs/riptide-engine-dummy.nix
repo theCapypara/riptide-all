@@ -8,13 +8,14 @@
 
 buildPythonPackage rec {
   pname = "riptide-engine-dummy";
-  version = "0.9.0";
+  version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-engine-dummy.git";
-    ref = "refs/tags/${version}";
-    rev = "77e345595b07b55510042ad655b9fcac6a153988";
+    # TODO
+    #ref = "refs/tags/${version}";
+    rev = "df6f5a3af6e91bc36837e7bee226b80ba58a2af1";
   };
 
   nativeBuildInputs = [ setuptools ];

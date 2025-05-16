@@ -17,14 +17,14 @@ final: prev: {
     })
   ];
 
-  python312 =
+  python313 =
     let
-      self = prev.python312.override {
+      self = prev.python313.override {
         inherit self;
         packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
       };
     in
     self;
 
-  python312Packages = final.python312.pkgs;
+  python313Packages = final.python313.pkgs;
 }
