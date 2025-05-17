@@ -27,8 +27,8 @@ mkShell {
         setuptools
         setuptools-rust
         certauth
-	    tox
-	    pytest
+        tox
+        pytest
       ]
       ++ lib.optionals (stdenv.isLinux) [ python313.pkgs.python-prctl ]
     )
