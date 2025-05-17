@@ -27,10 +27,10 @@ mkShell {
         setuptools
         setuptools-rust
         certauth
-	tox
-	pytest
+	    tox
+	    pytest
       ]
-      ++ lib.optionals (stdenv.isLinux) [ (callPackage ./pkgs/_forks/python-prctl.nix { }) ]
+      ++ lib.optionals (stdenv.isLinux) [ python313.pkgs.python-prctl ]
     )
     ++
       # # RUST

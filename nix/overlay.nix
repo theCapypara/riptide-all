@@ -12,8 +12,33 @@ final: prev: {
       riptide-plugin-php-xdebug = python-final.callPackage ./pkgs/riptide-plugin-php-xdebug.nix { };
       riptide-all = python-final.callPackage ./pkgs/riptide-all.nix { };
 
-      _riptide_python-prctl = python-final.callPackage ./pkgs/_forks/python-prctl.nix { };
-      _riptide_certauth = python-final.callPackage ./pkgs/_forks/certauth.nix { };
+      # Sets to a fork that doesn't use tldextract, since tldextract always tries to fetch files from the internet
+      # when starting, which is really annoying. We don't need the security features of tldextract here.
+      _riptide_certauth = python-prev.certauth.overridePythonAttrs (_: {
+        src = fetchGit {
+          url = "https://github.com/theCapypara/certauth.git";
+          rev = "e7eb7f3063f3df0198ef0a5b7cac13a28ef64f26";
+        };
+      });
+
+      # TODO: Temporary
+      _riptide_tornado = python-final.callPackage ./pkgs/_forks/tornado.nix { };
+      _riptide_click = python-final.callPackage ./pkgs/_forks/click.nix { };
+      # typer, which is a dependency of python-on-whales, which is a test dependency of aiohttp,
+      # does not support click 8.2, but it doesn't really matter for us, we don't need it.
+      aiohttp = python-prev.aiohttp.overridePythonAttrs (_: {
+          doCheck = false;
+      });
+      # similar for httpx
+      httpx = python-prev.httpx.overridePythonAttrs (_: {
+          doCheck = false;
+      });
+      python-dotenv = python-prev.python-dotenv.override {
+          click = python-final.callPackage ./pkgs/_forks/click.nix { };
+      };
+      flask = python-prev.flask.override {
+          click = python-final.callPackage ./pkgs/_forks/click.nix { };
+      };
     })
   ];
 
