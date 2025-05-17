@@ -4,7 +4,7 @@
   setuptools,
 
   riptide-lib,
-  click,
+  _riptide_click,
   colorama,
   click-help-colors,
   tqdm,
@@ -27,9 +27,9 @@ buildPythonPackage rec {
 
   propagatedBuildInputs = [
     riptide-lib
-    click
+    _riptide_click
     colorama
-    click-help-colors
+    (click-help-colors.override { click = _riptide_click; })
     tqdm
     packaging
   ];

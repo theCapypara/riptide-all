@@ -5,7 +5,7 @@
 
   riptide-lib,
   riptide-cli,
-  click,
+  _riptide_click,
 }:
 
 buildPythonPackage rec {
@@ -25,7 +25,7 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     riptide-lib
     riptide-cli
-    click
+    _riptide_click
   ];
 
   doCheck = false;
