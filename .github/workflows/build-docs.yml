@@ -14,9 +14,7 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v31
         with:
-          # TODO
-          #nix_path: nixpkgs=channel:nixos-25.05
-          nix_path: nixpkgs=channel:nixos-unstable
+          nix_path: nixpkgs=channel:nixos-25.05
       - name: Checkout "riptide-all"
         uses: actions/checkout@v4
       - name: Checkout "riptide-docs"
