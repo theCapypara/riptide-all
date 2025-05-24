@@ -6,7 +6,7 @@
 pkgs.symlinkJoin {
   name = "riptide-wrap";
   paths = [
-    (pkgs.python312.withPackages (
+    (pkgs.python313.withPackages (
       _:
       [
         cfg.cli.package

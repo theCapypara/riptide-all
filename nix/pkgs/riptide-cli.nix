@@ -4,7 +4,7 @@
   setuptools,
 
   riptide-lib,
-  click,
+  _riptide_click,
   colorama,
   click-help-colors,
   tqdm,
@@ -13,22 +13,23 @@
 
 buildPythonPackage rec {
   pname = "riptide-cli";
-  version = "0.9.0";
+  version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-cli.git";
-    ref = "refs/tags/${version}";
-    rev = "590dbb948c9385ac88fde534dc4790fb3f8da89b";
+    # TODO
+    #ref = "refs/tags/${version}";
+    rev = "d7fe11d0c7f1c6f3d6429519b011a6f696e01d8c";
   };
 
   nativeBuildInputs = [ setuptools ];
 
   propagatedBuildInputs = [
     riptide-lib
-    click
+    _riptide_click
     colorama
-    click-help-colors
+    (click-help-colors.override { click = _riptide_click; })
     tqdm
     packaging
   ];
