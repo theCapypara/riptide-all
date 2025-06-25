@@ -12,19 +12,47 @@ final: prev: {
       riptide-plugin-php-xdebug = python-final.callPackage ./pkgs/riptide-plugin-php-xdebug.nix { };
       riptide-all = python-final.callPackage ./pkgs/riptide-all.nix { };
 
-      _riptide_python-prctl = python-final.callPackage ./pkgs/_forks/python-prctl.nix { };
-      _riptide_certauth = python-final.callPackage ./pkgs/_forks/certauth.nix { };
+      # Sets to a fork that doesn't use tldextract, since tldextract always tries to fetch files from the internet
+      # when starting, which is really annoying. We don't need the security features of tldextract here.
+      _riptide_certauth = python-prev.certauth.overridePythonAttrs (_: {
+        src = fetchGit {
+          url = "https://github.com/theCapypara/certauth.git";
+          rev = "e7eb7f3063f3df0198ef0a5b7cac13a28ef64f26";
+        };
+      });
+
+      # TODO: Temporary
+      _riptide_click = python-final.callPackage ./pkgs/_forks/click.nix { };
+      # typer, which is a dependency of python-on-whales, which is a test dependency of aiohttp,
+      # does not support click 8.2, but it doesn't really matter for us, we don't need it.
+      aiohttp = python-prev.aiohttp.overridePythonAttrs (_: {
+          doCheck = false;
+      });
+      # similar for httpx
+      httpx = python-prev.httpx.overridePythonAttrs (_: {
+          doCheck = false;
+      });
+      python-dotenv = python-prev.python-dotenv.override {
+          click = python-final.callPackage ./pkgs/_forks/click.nix { };
+      };
+      flask = python-prev.flask.override {
+          click = python-final.callPackage ./pkgs/_forks/click.nix { };
+      };
     })
   ];
 
-  python312 =
-    let
-      self = prev.python312.override {
-        inherit self;
-        packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
-      };
-    in
-    self;
+  python313 = prev.python313.override {
+    packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
+  };
+  python313Packages = final.python313.pkgs;
 
+  python312 = prev.python312.override {
+    packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
+  };
   python312Packages = final.python312.pkgs;
+
+  python311 = prev.python311.override {
+    packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
+  };
+  python311Packages = final.python311.pkgs;
 }

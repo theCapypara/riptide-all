@@ -5,18 +5,19 @@
 
   riptide-lib,
   riptide-cli,
-  click,
+  _riptide_click,
 }:
 
 buildPythonPackage rec {
   pname = "riptide-plugin-php-xdebug";
-  version = "0.9.0";
+  version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-plugin-php-xdebug.git";
-    ref = "refs/tags/${version}";
-    rev = "adb794a4d3b0913ea6bcfadb0dc5fe0eade5cd2a";
+    # TODO
+    #ref = "refs/tags/${version}";
+    rev = "93c6f595ae0757df19c97e5da3d1e6353170e8db";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -24,7 +25,7 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     riptide-lib
     riptide-cli
-    click
+    _riptide_click
   ];
 
   doCheck = false;

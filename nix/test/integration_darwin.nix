@@ -1,14 +1,9 @@
 {
   nixpkgs ? <nixpkgs>,
+  pkgs ? import nixpkgs { inherit system; },
   system ? builtins.currentSystem,
   ...
 }:
-let
-  pkgs = import nixpkgs {
-    inherit system;
-    overlays = [ (import ../overlay.nix) ];
-  };
-in
 {
   imports = [ ../modules/darwin.nix ];
 
@@ -30,7 +25,7 @@ in
     user = "nixriptidetester";
     engine = {
       name = "dummy";
-      package = pkgs.python312Packages.riptide-engine-dummy;
+      package = pkgs.python313Packages.riptide-engine-dummy;
     };
     proxy = {
       enable = true;
