@@ -20,13 +20,17 @@
       flake-utils,
     }:
     let
+      makePkgs =
+        system:
+        import nixpkgs {
+          inherit system;
+          overlays = [ self.overlays.default ];
+        };
+
       systemDependent = flake-utils.lib.eachSystem (import systems) (
         system:
         let
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [ self.overlays.default ];
-          };
+          pkgs = makePkgs system;
         in
         {
           packages = {
@@ -49,6 +53,7 @@
           };
         }
       );
+
       systemIndependent = {
         nixosModules.riptide = import ./nix/modules/nixos.nix;
         nixosModules.default = self.nixosModules.riptide;
@@ -64,41 +69,73 @@
         };
 
         checks =
+          let
+            makePkgsChecks =
+              system: ver:
+              let
+                pkgs = makePkgs system;
+              in
+              {
+                "configcrunch${ver}" = pkgs."python${ver}Packages".configcrunch;
+                "riptide-lib${ver}" = pkgs."python${ver}Packages".riptide-lib;
+                "riptide-cli${ver}" = pkgs."python${ver}Packages".riptide-cli;
+                "riptide-proxy${ver}" = pkgs."python${ver}Packages".riptide-proxy;
+                "riptide-engine-docker${ver}" = pkgs."python${ver}Packages".riptide-engine-docker;
+                "riptide-engine-dummy${ver}" = pkgs."python${ver}Packages".riptide-engine-dummy;
+                "riptide-db-mongo${ver}" = pkgs."python${ver}Packages".riptide-db-mongo;
+                "riptide-db-mysql${ver}" = pkgs."python${ver}Packages".riptide-db-mysql;
+                "riptide-plugin-php-xdebug${ver}" = pkgs."python${ver}Packages".riptide-plugin-php-xdebug;
+                "riptide-all${ver}" = pkgs."python${ver}Packages".riptide-all;
+              };
+          in
           (nixpkgs.lib.genAttrs
             [
               "aarch64-darwin"
               "x86_64-darwin"
             ]
-            (system: {
-              integration =
-                (darwin.lib.darwinSystem {
-                  inherit system;
-                  modules = [
-                    ./nix/test/integration_darwin.nix
-                    {
-                      _module.args = {
-                        inherit nixpkgs system;
-                      };
-                    }
-                  ];
-                }).system;
-            })
+            (
+              system:
+              (
+                {
+                  integration =
+                    (darwin.lib.darwinSystem {
+                      inherit system;
+                      modules = [
+                        ./nix/test/integration_darwin.nix
+                        {
+                          _module.args = {
+                            inherit nixpkgs system;
+                            pkgs = makePkgs system;
+                          };
+                        }
+                      ];
+                    }).system;
+                }
+                // (makePkgsChecks system "313")
+                // (makePkgsChecks system "312")
+                // (makePkgsChecks system "311")
+              )
+            )
           )
           // (nixpkgs.lib.genAttrs
             [
               "aarch64-linux"
               "x86_64-linux"
             ]
-            (system: {
-              integration = import ./nix/test/integration_nixos.nix rec {
-                inherit nixpkgs;
-                system = "x86_64-linux";
-                pkgs = import nixpkgs {
-                  inherit system;
-                  overlays = [ self.overlays.default ];
-                };
-              };
-            })
+            (
+              system:
+              (
+                {
+                  integration = import ./nix/test/integration_nixos.nix rec {
+                    inherit nixpkgs system;
+                    pkgs = makePkgs system;
+                  };
+                }
+                // (makePkgsChecks system "313")
+                // (makePkgsChecks system "312")
+                // (makePkgsChecks system "311")
+              )
+            )
           );
 
         darwinConfigurations.integration-x86_64.system = self.checks.x86_64-darwin.integration;

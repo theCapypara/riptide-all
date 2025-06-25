@@ -1,14 +1,9 @@
 {
   nixpkgs ? <nixpkgs>,
+  pkgs ? import nixpkgs { inherit system; },
   system ? builtins.currentSystem,
   ...
 }:
-let
-  pkgs = import nixpkgs {
-    inherit system;
-    overlays = [ (import ../overlay.nix) ];
-  };
-in
 {
   imports = [ ../modules/darwin.nix ];
 

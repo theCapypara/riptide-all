@@ -6,7 +6,7 @@
 
   riptide-lib,
   _riptide_click,
-  _riptide_tornado,
+  tornado,
   _riptide_certauth,
   python-prctl,
 }:
@@ -19,14 +19,14 @@ buildPythonPackage rec {
     url = "https://github.com/theCapypara/riptide-proxy.git";
     # TODO
     #ref = "refs/tags/${version}";
-    rev = "7508ae61c87735d6dcfcf0844299e8e837de72dc";
+    rev = "e755e36cab638b547a8c77b586cad658975e5a9b";
   };
 
   nativeBuildInputs = [ setuptools ];
 
   propagatedBuildInputs = [
     riptide-lib
-    _riptide_tornado
+    tornado
     _riptide_click
     _riptide_certauth
   ] ++ lib.optionals (stdenv.isLinux) [ python-prctl ];

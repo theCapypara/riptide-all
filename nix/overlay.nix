@@ -22,7 +22,6 @@ final: prev: {
       });
 
       # TODO: Temporary
-      _riptide_tornado = python-final.callPackage ./pkgs/_forks/tornado.nix { };
       _riptide_click = python-final.callPackage ./pkgs/_forks/click.nix { };
       # typer, which is a dependency of python-on-whales, which is a test dependency of aiohttp,
       # does not support click 8.2, but it doesn't really matter for us, we don't need it.
@@ -42,14 +41,18 @@ final: prev: {
     })
   ];
 
-  python313 =
-    let
-      self = prev.python313.override {
-        inherit self;
-        packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
-      };
-    in
-    self;
-
+  python313 = prev.python313.override {
+    packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
+  };
   python313Packages = final.python313.pkgs;
+
+  python312 = prev.python312.override {
+    packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
+  };
+  python312Packages = final.python312.pkgs;
+
+  python311 = prev.python311.override {
+    packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
+  };
+  python311Packages = final.python311.pkgs;
 }

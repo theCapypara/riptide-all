@@ -20,7 +20,7 @@ buildPythonPackage rec {
     url = "https://github.com/theCapypara/riptide-cli.git";
     # TODO
     #ref = "refs/tags/${version}";
-    rev = "d7fe11d0c7f1c6f3d6429519b011a6f696e01d8c";
+    rev = "a77a265233fbe21d406b7b07f54a17d9ca4afebd";
   };
 
   nativeBuildInputs = [ setuptools ];

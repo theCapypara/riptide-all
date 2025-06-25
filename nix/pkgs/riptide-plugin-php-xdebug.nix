@@ -17,7 +17,7 @@ buildPythonPackage rec {
     url = "https://github.com/theCapypara/riptide-plugin-php-xdebug.git";
     # TODO
     #ref = "refs/tags/${version}";
-    rev = "0ab51aa45f44728c6a420ea8ba1eef4a4cb89a0c";
+    rev = "93c6f595ae0757df19c97e5da3d1e6353170e8db";
   };
 
   nativeBuildInputs = [ setuptools ];

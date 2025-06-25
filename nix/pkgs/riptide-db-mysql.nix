@@ -16,7 +16,7 @@ buildPythonPackage rec {
     url = "https://github.com/theCapypara/riptide-db-mysql.git";
     # TODO
     #ref = "refs/tags/${version}";
-    rev = "2dbc0864122464a7740d00b43dd295e6a6e7374a";
+    rev = "a05ad84586b157289a30407b2c72a93d0efd303c";
   };
 
   nativeBuildInputs = [ setuptools ];
