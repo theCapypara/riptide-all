@@ -34,6 +34,8 @@
         in
         {
           packages = {
+            python = pkgs.python313;
+
             configcrunch = pkgs.python313Packages.configcrunch;
             riptide-lib = pkgs.python313Packages.riptide-lib;
             riptide-cli = pkgs.python313Packages.riptide-cli;
@@ -44,8 +46,8 @@
             riptide-db-mysql = pkgs.python313Packages.riptide-db-mysql;
             riptide-plugin-php-xdebug = pkgs.python313Packages.riptide-plugin-php-xdebug;
             riptide-all = pkgs.python313Packages.riptide-all;
+
             default = pkgs.python313Packages.riptide-all;
-            inherit (pkgs) python313;
           };
 
           devShells = {
@@ -68,6 +70,7 @@
                 plugins.phpXdebug.package = lib.mkDefault self.packages.${pkgs.system}.riptide-plugin-php-xdebug;
                 proxy.package = lib.mkDefault self.packages.${pkgs.system}.riptide-proxy;
                 engine.package = lib.mkDefault self.packages.${pkgs.system}.riptide-engine-docker;
+                python = lib.mkDefault self.packages.${pkgs.system}.python;
               };
             };
         in

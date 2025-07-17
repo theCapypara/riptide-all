@@ -11,7 +11,7 @@ let
 
   eval = pkgs.lib.evalModules {
     modules = [
-      { options = (import ./modules/options.nix) { inherit (pkgs) formats lib python313Packages; }; }
+      { options = (import ./modules/options.nix) { inherit (pkgs) formats lib; }; }
       { options._module.args = pkgs.lib.mkOption { internal = true; }; }
     ];
   };
