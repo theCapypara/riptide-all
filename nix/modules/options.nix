@@ -20,7 +20,7 @@ let
           };
           package = lib.mkOption {
             type = types.package;
-            description = "The ${pkgName} package to use. Defaults to the one provided by this Flake.";
+            description = "The ${pkgName} package to use. Defaults to the one provided by this Flake";
             # Default set in flake.nix
           };
         };
@@ -38,7 +38,7 @@ in
         options = {
           package = lib.mkOption {
             type = types.package;
-            description = "The riptide-cli package to use. Defaults to the one provided by this Flake.";
+            description = "The riptide-cli package to use. Defaults to the one provided by this Flake";
             # Default set in flake.nix
           };
         };
@@ -107,7 +107,7 @@ in
           };
           package = lib.mkOption {
             type = types.package;
-            description = "The riptide-proxy package to use. Defaults to the one provided by this Flake.";
+            description = "The riptide-proxy package to use. Defaults to the one provided by this Flake";
             # Default set in flake.nix
           };
 
@@ -183,7 +183,7 @@ in
           };
           package = lib.mkOption {
             type = types.package;
-            description = "The Riptide Engine package to use. Defaults to riptide-engine-docker provided by this Flake.";
+            description = "The Riptide Engine package to use. Defaults to riptide-engine-docker provided by this Flake";
             # Default set in flake.nix
           };
         };
@@ -201,7 +201,7 @@ in
     };
 
     python = lib.mkOption {
-      description = "What Python environment to use. Change this only if you want to force another Python version or if your version of nixpkgs is incompatible with the one in this Flake";
+      description = "What Python environment to use. Change this only if you know what you are doing";
       type = types.package;
       # Default set in flake.nix
     };
