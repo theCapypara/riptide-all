@@ -2,7 +2,7 @@
   description = "Riptide - Tool to manage development environments for web applications using containers";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:theCapypara/nixpkgs/update-click";
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,97 +54,114 @@
         }
       );
 
-      systemIndependent = {
-        nixosModules.riptide = import ./nix/modules/nixos.nix;
-        nixosModules.default = self.nixosModules.riptide;
-
-        darwinModules.riptide = import ./nix/modules/darwin.nix;
-        darwinModules.default = self.darwinModules.riptide;
-
-        # Can be added to zsh/bash etc.
-        # Currently nix flake check warns on this, see: https://discourse.nixos.org/t/custom-flake-outputs-for-checks/18877/4
-        riptideShellIntegration = {
-          zsh = ". <(nix-riptide.hook.zsh)";
-          bash = ". <(nix-riptide.hook.bash)";
-        };
-
-        checks =
-          let
-            makePkgsChecks =
-              system: ver:
-              let
-                pkgs = makePkgs system;
-              in
-              {
-                "configcrunch${ver}" = pkgs."python${ver}Packages".configcrunch;
-                "riptide-lib${ver}" = pkgs."python${ver}Packages".riptide-lib;
-                "riptide-cli${ver}" = pkgs."python${ver}Packages".riptide-cli;
-                "riptide-proxy${ver}" = pkgs."python${ver}Packages".riptide-proxy;
-                "riptide-engine-docker${ver}" = pkgs."python${ver}Packages".riptide-engine-docker;
-                "riptide-engine-dummy${ver}" = pkgs."python${ver}Packages".riptide-engine-dummy;
-                "riptide-db-mongo${ver}" = pkgs."python${ver}Packages".riptide-db-mongo;
-                "riptide-db-mysql${ver}" = pkgs."python${ver}Packages".riptide-db-mysql;
-                "riptide-plugin-php-xdebug${ver}" = pkgs."python${ver}Packages".riptide-plugin-php-xdebug;
-                "riptide-all${ver}" = pkgs."python${ver}Packages".riptide-all;
+      systemIndependent =
+        let
+          mkRiptideModule =
+            riptideModule:
+            { pkgs, lib, ... }:
+            {
+              imports = [ riptideModule ];
+              services.riptide = {
+                cli.package = lib.mkDefault self.packages.${pkgs.system}.riptide-cli;
+                dbDrivers.mysql.package = lib.mkDefault self.packages.${pkgs.system}.riptide-db-mysql;
+                dbDrivers.mongodb.package = lib.mkDefault self.packages.${pkgs.system}.riptide-db-mongo;
+                plugins.phpXdebug.package = lib.mkDefault self.packages.${pkgs.system}.riptide-plugin-php-xdebug;
+                proxy.package = lib.mkDefault self.packages.${pkgs.system}.riptide-proxy;
+                engine.package = lib.mkDefault self.packages.${pkgs.system}.riptide-engine-docker;
               };
-          in
-          (nixpkgs.lib.genAttrs
-            [
-              "aarch64-darwin"
-              "x86_64-darwin"
-            ]
-            (
-              system:
-              (
+            };
+        in
+        {
+          nixosModules.riptide = mkRiptideModule ./nix/modules/nixos.nix;
+          nixosModules.default = self.nixosModules.riptide;
+
+          darwinModules.riptide = mkRiptideModule ./nix/modules/darwin.nix;
+          darwinModules.default = self.darwinModules.riptide;
+
+          # Can be added to zsh/bash etc.
+          # Currently nix flake check warns on this, see: https://discourse.nixos.org/t/custom-flake-outputs-for-checks/18877/4
+          riptideShellIntegration = {
+            zsh = ". <(nix-riptide.hook.zsh)";
+            bash = ". <(nix-riptide.hook.bash)";
+          };
+
+          checks =
+            let
+              makePkgsChecks =
+                system: ver:
+                let
+                  pkgs = makePkgs system;
+                in
                 {
-                  integration =
-                    (darwin.lib.darwinSystem {
-                      inherit system;
-                      modules = [
-                        ./nix/test/integration_darwin.nix
-                        {
-                          _module.args = {
-                            inherit nixpkgs system;
-                            pkgs = makePkgs system;
-                          };
-                        }
-                      ];
-                    }).system;
-                }
-                // (makePkgsChecks system "313")
-                // (makePkgsChecks system "312")
-                // (makePkgsChecks system "311")
+                  "configcrunch${ver}" = pkgs."python${ver}Packages".configcrunch;
+                  "riptide-lib${ver}" = pkgs."python${ver}Packages".riptide-lib;
+                  "riptide-cli${ver}" = pkgs."python${ver}Packages".riptide-cli;
+                  "riptide-proxy${ver}" = pkgs."python${ver}Packages".riptide-proxy;
+                  "riptide-engine-docker${ver}" = pkgs."python${ver}Packages".riptide-engine-docker;
+                  "riptide-engine-dummy${ver}" = pkgs."python${ver}Packages".riptide-engine-dummy;
+                  "riptide-db-mongo${ver}" = pkgs."python${ver}Packages".riptide-db-mongo;
+                  "riptide-db-mysql${ver}" = pkgs."python${ver}Packages".riptide-db-mysql;
+                  "riptide-plugin-php-xdebug${ver}" = pkgs."python${ver}Packages".riptide-plugin-php-xdebug;
+                  "riptide-all${ver}" = pkgs."python${ver}Packages".riptide-all;
+                };
+            in
+            (nixpkgs.lib.genAttrs
+              [
+                "aarch64-darwin"
+                "x86_64-darwin"
+              ]
+              (
+                system:
+                (
+                  {
+                    integration =
+                      (darwin.lib.darwinSystem {
+                        inherit system;
+                        modules = [
+                          ./nix/test/integration_darwin.nix
+                          {
+                            _module.args = {
+                              inherit nixpkgs system;
+                              flake = self;
+                            };
+                          }
+                        ];
+                      }).system;
+                  }
+                  // (makePkgsChecks system "313")
+                  // (makePkgsChecks system "312")
+                  // (makePkgsChecks system "311")
+                )
               )
             )
-          )
-          // (nixpkgs.lib.genAttrs
-            [
-              "aarch64-linux"
-              "x86_64-linux"
-            ]
-            (
-              system:
+            // (nixpkgs.lib.genAttrs
+              [
+                "aarch64-linux"
+                "x86_64-linux"
+              ]
               (
-                {
-                  integration = import ./nix/test/integration_nixos.nix rec {
-                    inherit nixpkgs system;
-                    pkgs = makePkgs system;
-                  };
-                }
-                // (makePkgsChecks system "313")
-                // (makePkgsChecks system "312")
-                // (makePkgsChecks system "311")
+                system:
+                (
+                  {
+                    integration = import ./nix/test/integration_nixos.nix rec {
+                      inherit nixpkgs system;
+                      flake = self;
+                    };
+                  }
+                  // (makePkgsChecks system "313")
+                  // (makePkgsChecks system "312")
+                  // (makePkgsChecks system "311")
+                )
               )
-            )
-          );
+            );
 
-        darwinConfigurations.integration-x86_64.system = self.checks.x86_64-darwin.integration;
-        darwinConfigurations.integration-aarch64.system = self.checks.aarch64-darwin.integration;
+          darwinConfigurations.integration-x86_64.system = self.checks.x86_64-darwin.integration;
+          darwinConfigurations.integration-aarch64.system = self.checks.aarch64-darwin.integration;
 
-        overlays = {
-          default = import ./nix/overlay.nix;
+          overlays = {
+            default = import ./nix/overlay.nix;
+          };
         };
-      };
     in
     systemDependent // systemIndependent;
 }

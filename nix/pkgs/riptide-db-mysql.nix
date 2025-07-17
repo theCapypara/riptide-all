@@ -7,7 +7,7 @@
   schema,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "riptide-db-mysql";
   version = "0.10.0";
   pyproject = true;

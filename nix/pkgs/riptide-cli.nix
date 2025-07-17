@@ -4,14 +4,14 @@
   setuptools,
 
   riptide-lib,
-  _riptide_click,
+  click,
   colorama,
   click-help-colors,
   tqdm,
   packaging,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "riptide-cli";
   version = "0.10.0";
   pyproject = true;
@@ -27,9 +27,9 @@ buildPythonPackage rec {
 
   propagatedBuildInputs = [
     riptide-lib
-    _riptide_click
+    click
     colorama
-    (click-help-colors.override { click = _riptide_click; })
+    click-help-colors
     tqdm
     packaging
   ];

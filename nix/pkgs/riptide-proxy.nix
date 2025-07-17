@@ -5,12 +5,12 @@
   setuptools,
 
   riptide-lib,
-  _riptide_click,
+  click,
   tornado,
   _riptide_certauth,
   python-prctl,
 }:
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "riptide-proxy";
   version = "0.10.0";
   pyproject = true;
@@ -27,7 +27,7 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     riptide-lib
     tornado
-    _riptide_click
+    click
     _riptide_certauth
   ] ++ lib.optionals (stdenv.isLinux) [ python-prctl ];
 

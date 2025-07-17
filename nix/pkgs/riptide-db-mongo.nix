@@ -7,7 +7,7 @@
   schema,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "riptide-db-mongo";
   version = "0.10.0";
   pyproject = true;

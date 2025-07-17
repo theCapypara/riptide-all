@@ -1,6 +1,5 @@
 {
   lib,
-  python313Packages,
   formats,
 }:
 let
@@ -19,7 +18,10 @@ let
           enable = lib.mkEnableOption "this package" // {
             inherit default;
           };
-          package = lib.mkPackageOption python313Packages pkgName { };
+          package = lib.mkOption {
+            type = types.package;
+            # Default set in flake.nix
+          };
         };
       };
       default = { };
@@ -33,7 +35,10 @@ in
       description = "CLI settings";
       type = types.submodule {
         options = {
-          package = lib.mkPackageOption python313Packages "riptide-cli" { };
+          package = lib.mkOption {
+            type = types.package;
+            # Default set in flake.nix
+          };
         };
       };
       default = { };
@@ -98,7 +103,10 @@ in
           enable = lib.mkEnableOption "Riptide Proxy Server" // {
             default = true;
           };
-          package = lib.mkPackageOption python313Packages "riptide-proxy" { };
+          package = lib.mkOption {
+            type = types.package;
+            # Default set in flake.nix
+          };
 
           url = lib.mkOption {
             type = types.str;
@@ -170,7 +178,10 @@ in
             default = "docker";
             description = "Riptide engine implementation to use";
           };
-          package = lib.mkPackageOption python313Packages "riptide-engine-docker" { };
+          package = lib.mkOption {
+            type = types.package;
+            # Default set in flake.nix
+          };
         };
       };
       default = { };

@@ -14,7 +14,7 @@
   python-dotenv,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "riptide-lib";
   version = "0.10.0";
   pyproject = true;

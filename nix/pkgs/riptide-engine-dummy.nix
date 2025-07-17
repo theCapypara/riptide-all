@@ -6,7 +6,7 @@
   riptide-lib,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "riptide-engine-dummy";
   version = "0.10.0";
   pyproject = true;

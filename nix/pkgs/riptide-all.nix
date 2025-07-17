@@ -11,7 +11,7 @@
   riptide-plugin-php-xdebug,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "riptide-all";
   version = "0.10.0";
   pyproject = true;

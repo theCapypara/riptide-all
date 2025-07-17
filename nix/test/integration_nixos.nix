@@ -2,6 +2,7 @@
   nixpkgs ? <nixpkgs>,
   pkgs ? import nixpkgs { inherit system; },
   system ? builtins.currentSystem,
+  flake,
   ...
 }:
 pkgs.nixosTest {
@@ -14,7 +15,7 @@ pkgs.nixosTest {
       ...
     }:
     {
-      imports = [ ../modules/nixos.nix ];
+      imports = [ flake.nixosModules.riptide ];
 
       environment.systemPackages = [
         pkgs.file

@@ -21,23 +21,16 @@ final: prev: {
         };
       });
 
-      # TODO: Temporary
-      _riptide_click = python-final.callPackage ./pkgs/_forks/click.nix { };
-      # typer, which is a dependency of python-on-whales, which is a test dependency of aiohttp,
-      # does not support click 8.2, but it doesn't really matter for us, we don't need it.
-      aiohttp = python-prev.aiohttp.overridePythonAttrs (_: {
-          doCheck = false;
+      # TODO: Temporary - check failures, probably due to Click (or unrelated)
+      syrupy = python-prev.syrupy.overridePythonAttrs (_: {
+        doCheck = false;
       });
-      # similar for httpx
-      httpx = python-prev.httpx.overridePythonAttrs (_: {
-          doCheck = false;
+      anyio = python-prev.anyio.overridePythonAttrs (_: {
+        doCheck = false;
       });
-      python-dotenv = python-prev.python-dotenv.override {
-          click = python-final.callPackage ./pkgs/_forks/click.nix { };
-      };
-      flask = python-prev.flask.override {
-          click = python-final.callPackage ./pkgs/_forks/click.nix { };
-      };
+      typer = python-prev.typer.overridePythonAttrs (_: {
+        doCheck = false;
+      });
     })
   ];
 

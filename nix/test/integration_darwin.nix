@@ -2,10 +2,11 @@
   nixpkgs ? <nixpkgs>,
   pkgs ? import nixpkgs { inherit system; },
   system ? builtins.currentSystem,
+  flake,
   ...
 }:
 {
-  imports = [ ../modules/darwin.nix ];
+  imports = [ flake.darwinModules.riptide ];
 
   # TODO: We don't actually test that Riptide is working yet.
 

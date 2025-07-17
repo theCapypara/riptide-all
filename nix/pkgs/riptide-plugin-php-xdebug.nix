@@ -5,10 +5,10 @@
 
   riptide-lib,
   riptide-cli,
-  _riptide_click,
+  click,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "riptide-plugin-php-xdebug";
   version = "0.10.0";
   pyproject = true;
@@ -25,7 +25,7 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     riptide-lib
     riptide-cli
-    _riptide_click
+    click
   ];
 
   doCheck = false;
