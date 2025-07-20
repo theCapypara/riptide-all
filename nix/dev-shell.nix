@@ -33,6 +33,12 @@ mkShell {
       ++ lib.optionals (stdenv.isLinux) [ python313.pkgs.python-prctl ]
     )
     ++
+    # PYTHON LINTING
+    [
+      python313.pkgs.ruff
+      python313.pkgs.mypy
+    ]
+    ++
       # # RUST
       ([
         cargo
