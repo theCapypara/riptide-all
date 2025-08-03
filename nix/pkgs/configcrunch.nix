@@ -13,13 +13,13 @@
 }:
 buildPythonPackage rec {
   pname = "configcrunch";
-  version = "1.2.0";
+  version = "1.3.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/configcrunch.git";
     ref = "refs/tags/${version}";
-    rev = "ad3392ae466a2af3927ff2355f22620c76aea02b";
+    rev = "ea87c346855455e9e84576da39e976252ee5be4c";
   };
 
   cargoDeps = rustPlatform.fetchCargoVendor {
