@@ -24,7 +24,7 @@ buildPythonPackage {
     # TODO
     #ref = "refs/tags/${version}";
     ref = "refs/heads/add-linting";
-    rev = "1ccce1eb627e31e62761ae55396cc0f9ec4a96d6";
+    rev = "ad8a4be327ac0da3ad1dd6fd791718450430e46a";
   };
 
   nativeBuildInputs = [ setuptools ];

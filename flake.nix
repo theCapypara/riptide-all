@@ -50,6 +50,8 @@
             default = pkgs.python313Packages.riptide-all;
           };
 
+          formatter = pkgs.nixfmt-tree;
+
           devShells = {
             default = pkgs.callPackage ./nix/dev-shell.nix { };
           };
