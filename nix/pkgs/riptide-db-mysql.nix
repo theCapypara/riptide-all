@@ -16,6 +16,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-db-mysql.git";
     # TODO
     #ref = "refs/tags/${version}";
+    ref = "refs/heads/add-linting";
     rev = "eb5a5b54a1a4c2caf2f60e3434f36e02fb4b7a3f";
   };
 

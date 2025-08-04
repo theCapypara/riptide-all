@@ -19,6 +19,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-proxy.git";
     # TODO
     #ref = "refs/tags/${version}";
+    ref = "refs/heads/add-linting";
     rev = "cc35073bc2eedaa01bc4698d636f312071a1e308";
   };
 

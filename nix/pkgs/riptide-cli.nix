@@ -20,6 +20,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-cli.git";
     # TODO
     #ref = "refs/tags/${version}";
+    ref = "refs/heads/add-linting";
     rev = "f3a1c95679c2bf64e01ea093f74888478a90c253";
   };
 

@@ -16,6 +16,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-db-mongo.git";
     # TODO
     #ref = "refs/tags/${version}";
+    ref = "refs/heads/add-linting";
     rev = "19a9b8573a00383b8dd35282c2c4ea4d4b3c71dd";
   };
 
