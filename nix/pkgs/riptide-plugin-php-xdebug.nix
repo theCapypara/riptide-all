@@ -17,8 +17,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-plugin-php-xdebug.git";
     # TODO
     #ref = "refs/tags/${version}";
-    ref = "refs/heads/add-linting";
-    rev = "e8aee7121b79984b25fa50ef0cd028293a8c8907";
+    rev = "b2e8177534f4a8fe701ae7dc82b30f254208b1e0";
   };
 
   nativeBuildInputs = [ setuptools ];

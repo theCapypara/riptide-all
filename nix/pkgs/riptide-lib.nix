@@ -23,8 +23,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-lib.git";
     # TODO
     #ref = "refs/tags/${version}";
-    ref = "refs/heads/add-linting";
-    rev = "ad8a4be327ac0da3ad1dd6fd791718450430e46a";
+    rev = "f34052f31d1bd7a0772b595c33fd6bba0eeeebcc";
   };
 
   nativeBuildInputs = [ setuptools ];

@@ -16,8 +16,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-engine-docker.git";
     # TODO
     #ref = "refs/tags/${version}";
-    ref = "refs/heads/add-linting";
-    rev = "2882bed0a89944f8f7b1e20e6b50bd77734cb7c0";
+    rev = "91d67542c3337116ad899f54a2cf97efe48a32fd";
   };
 
   nativeBuildInputs = [ setuptools ];
