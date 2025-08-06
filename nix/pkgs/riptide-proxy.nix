@@ -19,7 +19,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-proxy.git";
     # TODO
     #ref = "refs/tags/${version}";
-    rev = "276e3b6b66add47fdcdf65b4426363072e66852a";
+    rev = "cb580eaa4b1e2a3d8c36fcce4d00dadcfea7ea8c";
   };
 
   nativeBuildInputs = [ setuptools ];
