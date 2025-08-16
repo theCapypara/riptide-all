@@ -11,15 +11,16 @@
   packaging,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage {
   pname = "riptide-cli";
-  version = "0.9.0";
+  version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-cli.git";
-    ref = "refs/tags/${version}";
-    rev = "590dbb948c9385ac88fde534dc4790fb3f8da89b";
+    # TODO
+    #ref = "refs/tags/${version}";
+    rev = "acb8b6a2a0e7876fcc56b50ddf7836b96663cae9";
   };
 
   nativeBuildInputs = [ setuptools ];
