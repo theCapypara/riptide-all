@@ -16,7 +16,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-engine-docker.git";
     # TODO
     #ref = "refs/tags/${version}";
-    rev = "0060cecae3c6b62ae59fafb02d49083b59586e37";
+    rev = "635126ddb9941d3a40f691a1c2d51a676d6e6a12";
   };
 
   nativeBuildInputs = [ setuptools ];
