@@ -1,16 +1,12 @@
 {
   nixpkgs ? <nixpkgs>,
+  pkgs ? import nixpkgs { inherit system; },
   system ? builtins.currentSystem,
+  flake,
   ...
 }:
-let
-  pkgs = import nixpkgs {
-    inherit system;
-    overlays = [ (import ../overlay.nix) ];
-  };
-in
 {
-  imports = [ ../modules/darwin.nix ];
+  imports = [ flake.darwinModules.riptide ];
 
   # TODO: We don't actually test that Riptide is working yet.
 
@@ -30,7 +26,7 @@ in
     user = "nixriptidetester";
     engine = {
       name = "dummy";
-      package = pkgs.python312Packages.riptide-engine-dummy;
+      package = pkgs.python313Packages.riptide-engine-dummy;
     };
     proxy = {
       enable = true;

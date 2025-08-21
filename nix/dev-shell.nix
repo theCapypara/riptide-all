@@ -1,6 +1,6 @@
 {
   mkShell,
-  python312,
+  python313,
   cargo,
   rustc,
   rustfmt,
@@ -19,18 +19,18 @@ mkShell {
 
   packages =
     # PYTHON
-    [ python312 ]
+    [ python313 ]
     ++ (
-      with python312.pkgs;
+      with python313.pkgs;
       [
         pip
         setuptools
         setuptools-rust
         certauth
-	tox
-	pytest
+        tox
+        pytest
       ]
-      ++ lib.optionals (stdenv.isLinux) [ (callPackage ./pkgs/_forks/python-prctl.nix { }) ]
+      ++ lib.optionals (stdenv.isLinux) [ python313.pkgs.python-prctl ]
     )
     ++
       # # RUST
@@ -59,14 +59,14 @@ mkShell {
     VENV=~/.riptide_venv
 
     if test ! -d $VENV; then
-      python3.12 -m venv $VENV
+      python3.13 -m venv $VENV
     fi
     source $VENV/bin/activate
-    export PYTHONPATH=`pwd`/$VENV/${python312.sitePackages}/:$PYTHONPATH
+    export PYTHONPATH=`pwd`/$VENV/${python313.sitePackages}/:$PYTHONPATH
     # Link all packages
     ( IFS=:
       for p in $PYTHONPATH; do
-          ln -sf $p/* $VENV/lib/python3.12/site-packages 2> /dev/null
+          ln -sf $p/* $VENV/lib/python3.13/site-packages 2> /dev/null
       done
     )
     export IN_NIX_SHELL="riptide"
