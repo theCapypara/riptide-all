@@ -43,6 +43,7 @@ buildPythonPackage {
 
   # Remove the original hook scripts, since they will be wrapped by python.buildEnv. Instead
   # provide nix-riptide.hook.* variants that echo out the hooks when executed.
+  # Also output the shell completion of Riptide
   postFixup = ''
     COMMON_HOOK_SRC=$(cat $out/bin/riptide.hook.common.sh)
     BASH_HOOK_SRC="$COMMON_HOOK_SRC $(cat $out/bin/riptide.hook.bash | grep -v 'riptide.hook.common.sh')"
@@ -53,6 +54,7 @@ buildPythonPackage {
     echo ' '>> $out/bin/nix-riptide.hook.bash
     echo "$BASH_HOOK_SRC">> $out/bin/nix-riptide.hook.bash
     echo 'EOF' >> $out/bin/nix-riptide.hook.bash
+    echo '_RIPTIDE_COMPLETE=bash_source $out/bin/riptide' >> $out/bin/nix-riptide.hook.bash
     chmod +x $out/bin/nix-riptide.hook.bash
 
     echo '#!/usr/bin/env bash' > $out/bin/nix-riptide.hook.zsh
@@ -60,6 +62,7 @@ buildPythonPackage {
     echo ' '>> $out/bin/nix-riptide.hook.zsh
     echo "$ZSH_HOOK_SRC">> $out/bin/nix-riptide.hook.zsh
     echo 'EOF' >> $out/bin/nix-riptide.hook.zsh
+    echo '_RIPTIDE_COMPLETE=zsh_source $out/bin/riptide' >> $out/bin/nix-riptide.hook.zsh
     chmod +x $out/bin/nix-riptide.hook.zsh
 
     rm $out/bin/riptide.hook.*
