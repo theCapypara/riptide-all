@@ -54,6 +54,7 @@ buildPythonPackage {
     echo ' '>> $out/bin/nix-riptide.hook.bash
     echo "$BASH_HOOK_SRC">> $out/bin/nix-riptide.hook.bash
     echo 'EOF' >> $out/bin/nix-riptide.hook.bash
+    echo ' '  >> $out/bin/nix-riptide.hook.bash
     echo 'eval "$(_RIPTIDE_COMPLETE=bash_source '"$out/bin/riptide"')"' >> $out/bin/nix-riptide.hook.bash
     chmod +x $out/bin/nix-riptide.hook.bash
 
@@ -62,6 +63,7 @@ buildPythonPackage {
     echo ' '>> $out/bin/nix-riptide.hook.zsh
     echo "$ZSH_HOOK_SRC">> $out/bin/nix-riptide.hook.zsh
     echo 'EOF' >> $out/bin/nix-riptide.hook.zsh
+    echo ' '  >> $out/bin/nix-riptide.hook.zsh
     echo 'eval "$(_RIPTIDE_COMPLETE=zsh_source '"$out/bin/riptide"')"' >> $out/bin/nix-riptide.hook.zsh
     chmod +x $out/bin/nix-riptide.hook.zsh
 
