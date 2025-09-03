@@ -37,6 +37,9 @@ final: prev: {
       typer = python-prev.typer.overridePythonAttrs (_: {
         doCheck = false;
       });
+      aiohttp = python-prev.aiohttp.overridePythonAttrs (_: {
+        doCheck = false;
+      });
     })
   ];
 
