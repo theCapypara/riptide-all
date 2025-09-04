@@ -21,8 +21,12 @@ pkgs.nixosTest {
         pkgs.file
         pkgs.curl
         pkgs.which
-        pkgs.zsh
       ];
+
+      programs.zsh = {
+        enable = true;
+        enableCompletion = true;
+      };
 
       virtualisation = {
         containers.enable = true;
@@ -144,7 +148,7 @@ pkgs.nixosTest {
       system1.succeed("bash -c '. <(nix-riptide.hook.bash)'")
       system1.succeed("which nix-riptide.hook.zsh")
       system1.succeed("bash -c 'echo $(nix-riptide.hook.zsh) | grep riptide_cwdir_hook'")
-      system1.succeed("zsh -c '. <(nix-riptide.hook.zsh)'")
+      system1.succeed("zsh -c 'autoload -U compinit; compinit; . <(nix-riptide.hook.zsh)'")
 
       system1.succeed("which riptide")
       system1.succeed("which riptide_proxy")
