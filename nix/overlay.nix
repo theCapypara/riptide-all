@@ -21,11 +21,9 @@ final: prev: {
         };
       });
 
-      # TODO: Click and Tornado updates
+      # TODO: Click updates
       # https://github.com/NixOS/nixpkgs/pull/425929
       click = python-final.callPackage ./pkgs/_forks/click-8.2.1.nix { };
-      # https://github.com/NixOS/nixpkgs/pull/407877
-      tornado = python-final.callPackage ./pkgs/_forks/tornado-6.5.1.nix { };
 
       # TODO: Temporary - check failures, probably due to Click (or unrelated)
       syrupy = python-prev.syrupy.overridePythonAttrs (_: {
