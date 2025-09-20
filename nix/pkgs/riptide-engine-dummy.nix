@@ -15,7 +15,8 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-engine-dummy.git";
     # TODO
     #ref = "refs/tags/${version}";
-    rev = "2d1f2db338a100ec54cc1b084084b3b833f6fc4d";
+    ref = "refs/heads/hooks";
+    rev = "6150fcf9968649c7165a0b7d57583711988a6e21";
   };
 
   nativeBuildInputs = [ setuptools ];
