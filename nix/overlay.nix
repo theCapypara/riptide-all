@@ -26,7 +26,7 @@ final: prev: {
       click = python-final.callPackage ./pkgs/_forks/click-8.2.1.nix { };
 
       # TODO: setproctitle update
-      # XXX
+      # https://github.com/NixOS/nixpkgs/pull/444741
       setproctitle = python-final.callPackage ./pkgs/_forks/setproctitle-1.3.7.nix { };
 
       # TODO: Temporary - check failures, probably due to Click (or unrelated)

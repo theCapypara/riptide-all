@@ -49,7 +49,7 @@ mkShell {
     ## OTHER
     ++ [ stdenv.cc.cc.lib ];
 
-  # Expsose venv for simpler integration with editors & IDEs.
+  # Expose venv for simpler integration with editors & IDEs.
   # This should be enough for IDEs & LSPs but may not be enough to run
   # riptide by just activating the venv!
   shellHook = ''
