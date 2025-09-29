@@ -5,9 +5,8 @@
 
   riptide-lib,
   click,
-  colorama,
+  rich,
   click-help-colors,
-  tqdm,
   setproctitle,
   packaging,
 }:
@@ -21,8 +20,8 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-cli.git";
     # TODO
     #ref = "refs/tags/${version}";
-    ref = "refs/heads/hooks";
-    rev = "7c085e652d2750a317214fc73f12911a326e7791";
+    ref = "refs/heads/new-cli";
+    rev = "e4d8c93f8fe2f2c42a2afd0ecb1a29b36bdbf515";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -30,9 +29,8 @@ buildPythonPackage {
   propagatedBuildInputs = [
     riptide-lib
     click
-    colorama
+    rich
     click-help-colors
-    tqdm
     setproctitle
     packaging
   ];

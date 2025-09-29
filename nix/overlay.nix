@@ -21,13 +21,17 @@ final: prev: {
         };
       });
 
-      # TODO: Click updates
+      # TODO: Click updates (probably NixOS 25.11)
       # https://github.com/NixOS/nixpkgs/pull/425929
       click = python-final.callPackage ./pkgs/_forks/click-8.2.1.nix { };
 
-      # TODO: setproctitle update
-      # https://github.com/NixOS/nixpkgs/pull/444741
+      # TODO: setproctitle update (probably NixOS 25.11)
+      # https://github.com/NixOS/nixpkgs/pull/444696
       setproctitle = python-final.callPackage ./pkgs/_forks/setproctitle-1.3.7.nix { };
+
+      # TODO: rich update (probably NixOS 25.11)
+      # https://github.com/NixOS/nixpkgs/pull/429077
+      rich = python-final.callPackage ./pkgs/_forks/rich-14.1.0.nix { };
 
       # TODO: Temporary - check failures, probably due to Click (or unrelated)
       syrupy = python-prev.syrupy.overridePythonAttrs (_: {
