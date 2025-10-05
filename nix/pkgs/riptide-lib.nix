@@ -24,7 +24,7 @@ buildPythonPackage {
     # TODO
     #ref = "refs/tags/${version}";
     ref = "refs/heads/new-cli";
-    rev = "29bb982e0e158d5611c1f7303ef34d15609d3678";
+    rev = "994c8734fa99ef8ff87fef5c2eb0e4beeefb6036";
   };
 
   nativeBuildInputs = [ setuptools ];
