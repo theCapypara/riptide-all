@@ -17,7 +17,7 @@ buildPythonPackage {
     # TODO
     #ref = "refs/tags/${version}";
     ref = "refs/heads/hooks";
-    rev = "dba08e88f06f6357cc12d453f5bcad19daef6605";
+    rev = "876e8dcc38cbb1fc18d36398b59508a40af1d073";
   };
 
   nativeBuildInputs = [ setuptools ];
