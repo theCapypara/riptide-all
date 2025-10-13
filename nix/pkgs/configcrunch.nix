@@ -13,19 +13,19 @@
 }:
 buildPythonPackage rec {
   pname = "configcrunch";
-  version = "2.0.0";
+  version = "2.0.1";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/configcrunch.git";
     ref = "refs/tags/${version}";
-    rev = "79a3f914de1a3b5ef5ddc0d3a457b9d6192030cd";
+    rev = "365dd119e026fb51d37e369687da5dfc8b4bf320";
   };
 
   cargoDeps = rustPlatform.fetchCargoVendor {
     inherit src;
     name = "${pname}-${version}";
-    hash = "sha256-BHGQ/EtaRD/fyYdGm+PZ5dgZWrW+WIJ+6FTFAAoSic8=";
+    hash = "sha256-Wi0ZRZVXfASIpFv0ac1JNfSusEJ6/pDUQ+fFIWOM7NA=";
   };
 
   nativeBuildInputs = [
