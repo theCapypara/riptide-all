@@ -16,7 +16,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-db-mongo.git";
     # TODO
     #ref = "refs/tags/${version}";
-    rev = "0b7d9c8c6c9c22028cbe058693997087d48fdbe8";
+    rev = "29a4d51b8a675fc0af8993da4df38655e4c581e8";
   };
 
   nativeBuildInputs = [ setuptools ];
