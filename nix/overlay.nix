@@ -20,34 +20,13 @@ final: prev: {
           rev = "e7eb7f3063f3df0198ef0a5b7cac13a28ef64f26";
         };
       });
-
-      # TODO: Click updates (probably NixOS 25.11)
-      # https://github.com/NixOS/nixpkgs/pull/425929
-      click = python-final.callPackage ./pkgs/_forks/click-8.2.1.nix { };
-
-      # TODO: setproctitle update (probably NixOS 25.11)
-      # https://github.com/NixOS/nixpkgs/pull/444696
-      setproctitle = python-final.callPackage ./pkgs/_forks/setproctitle-1.3.7.nix { };
-
-      # TODO: rich update (probably NixOS 25.11)
-      # https://github.com/NixOS/nixpkgs/pull/429077
-      rich = python-final.callPackage ./pkgs/_forks/rich-14.1.0.nix { };
-
-      # TODO: Temporary - check failures, probably due to Click (or unrelated)
-      syrupy = python-prev.syrupy.overridePythonAttrs (_: {
-        doCheck = false;
-      });
-      anyio = python-prev.anyio.overridePythonAttrs (_: {
-        doCheck = false;
-      });
-      typer = python-prev.typer.overridePythonAttrs (_: {
-        doCheck = false;
-      });
-      aiohttp = python-prev.aiohttp.overridePythonAttrs (_: {
-        doCheck = false;
-      });
     })
   ];
+
+  python314 = prev.python314.override {
+    packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;
+  };
+  python314Packages = final.python314.pkgs;
 
   python313 = prev.python313.override {
     packageOverrides = prev.lib.composeManyExtensions final.pythonPackagesOverlays;

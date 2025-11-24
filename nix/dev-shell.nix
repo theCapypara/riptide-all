@@ -14,14 +14,18 @@
   stdenv,
   lib,
 }:
+let
+  python = python313;
+  pyVersion = "3.13";
+in
 mkShell {
   name = "riptide";
 
   packages =
     # PYTHON
-    [ python313 ]
+    [ python ]
     ++ (
-      with python313.pkgs;
+      with python.pkgs;
       [
         pip
         setuptools
@@ -30,7 +34,7 @@ mkShell {
         tox
         pytest
       ]
-      ++ lib.optionals (stdenv.isLinux) [ python313.pkgs.python-prctl ]
+      ++ lib.optionals (stdenv.isLinux) [ python.pkgs.python-prctl ]
     )
     ++
       # # RUST
@@ -59,14 +63,14 @@ mkShell {
     VENV=~/.riptide_venv
 
     if test ! -d $VENV; then
-      python3.13 -m venv $VENV
+      python${pyVersion} -m venv $VENV
     fi
     source $VENV/bin/activate
-    export PYTHONPATH=`pwd`/$VENV/${python313.sitePackages}/:$PYTHONPATH
+    export PYTHONPATH=`pwd`/$VENV/${python.sitePackages}/:$PYTHONPATH
     # Link all packages
     ( IFS=:
       for p in $PYTHONPATH; do
-          ln -sf $p/* $VENV/lib/python3.13/site-packages 2> /dev/null
+          ln -sf $p/* $VENV/lib/python${pyVersion}/site-packages 2> /dev/null
       done
     )
     export IN_NIX_SHELL="riptide"

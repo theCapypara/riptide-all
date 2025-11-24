@@ -9,7 +9,7 @@
   appdirs,
   janus,
   psutil,
-  GitPython,
+  gitpython,
   python-hosts,
   python-dotenv,
 }:
@@ -23,7 +23,7 @@ buildPythonPackage {
     url = "https://github.com/theCapypara/riptide-lib.git";
     # TODO
     #ref = "refs/tags/${version}";
-    rev = "1ee0ac0e9742949544b6327417aaac02d2df569a";
+    rev = "c365fad9caece27a3f696f8b10ee47c39a33b3f4";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -35,7 +35,7 @@ buildPythonPackage {
     appdirs
     janus
     psutil
-    GitPython
+    gitpython
     python-hosts
     python-dotenv
   ];

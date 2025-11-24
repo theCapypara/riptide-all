@@ -2,7 +2,7 @@
   description = "Riptide - Tool to manage development environments for web applications using containers";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # TODO: 25.11
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,13 +66,13 @@
             {
               imports = [ riptideModule ];
               services.riptide = {
-                cli.package = lib.mkDefault self.packages.${pkgs.system}.riptide-cli;
-                dbDrivers.mysql.package = lib.mkDefault self.packages.${pkgs.system}.riptide-db-mysql;
-                dbDrivers.mongodb.package = lib.mkDefault self.packages.${pkgs.system}.riptide-db-mongo;
-                plugins.phpXdebug.package = lib.mkDefault self.packages.${pkgs.system}.riptide-plugin-php-xdebug;
-                proxy.package = lib.mkDefault self.packages.${pkgs.system}.riptide-proxy;
-                engine.package = lib.mkDefault self.packages.${pkgs.system}.riptide-engine-docker;
-                python = lib.mkDefault self.packages.${pkgs.system}.python;
+                cli.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-cli;
+                dbDrivers.mysql.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-db-mysql;
+                dbDrivers.mongodb.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-db-mongo;
+                plugins.phpXdebug.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-plugin-php-xdebug;
+                proxy.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-proxy;
+                engine.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-engine-docker;
+                python = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.python;
               };
             };
         in
@@ -133,6 +133,7 @@
                         ];
                       }).system;
                   }
+                  # TODO: doesn't work yet: // (makePkgsChecks system "314")
                   // (makePkgsChecks system "313")
                   // (makePkgsChecks system "312")
                   // (makePkgsChecks system "311")
@@ -153,6 +154,7 @@
                       flake = self;
                     };
                   }
+                  # TODO: doesn't work yet: // (makePkgsChecks system "314")
                   // (makePkgsChecks system "313")
                   // (makePkgsChecks system "312")
                   // (makePkgsChecks system "311")

@@ -5,7 +5,7 @@
   flake,
   ...
 }:
-pkgs.nixosTest {
+pkgs.testers.nixosTest {
   name = "riptide-integration";
   nodes.system1 =
     {
