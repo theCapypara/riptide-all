@@ -16,9 +16,9 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-24.05
       - name: Checkout "riptide-all"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Checkout "riptide-docs"
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: theCapypara/riptide-docs
           path: docs
