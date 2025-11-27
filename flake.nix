@@ -2,7 +2,7 @@
   description = "Riptide - Tool to manage development environments for web applications using containers";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-25.11"; # TODO: nixos-25.11
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
