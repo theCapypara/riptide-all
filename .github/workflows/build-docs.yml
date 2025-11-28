@@ -4,7 +4,7 @@ name: Build docs
 on:
   push:
     branches: [ master ]
-  pull_request: {}
+  pull_request: { }
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v31
         with:
-          nix_path: nixpkgs=channel:nixos-24.05
+          nix_path: nixpkgs=channel:nixos-25.11
       - name: Checkout "riptide-all"
         uses: actions/checkout@v6
       - name: Checkout "riptide-docs"

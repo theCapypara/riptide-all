@@ -9,13 +9,13 @@
 
 buildPythonPackage rec {
   pname = "riptide-engine-docker";
-  version = "0.9.2";
+  version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-engine-docker.git";
     ref = "refs/tags/${version}";
-    rev = "f3160668fe602d2303c0b4e2ba82a5cb583e1086";
+    rev = "1a54f5b7da95ee7c129818bd294c71446fb97f66";
   };
 
   nativeBuildInputs = [ setuptools ];

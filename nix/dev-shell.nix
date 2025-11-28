@@ -1,6 +1,6 @@
 {
   mkShell,
-  python312,
+  python313,
   cargo,
   rustc,
   rustfmt,
@@ -14,23 +14,27 @@
   stdenv,
   lib,
 }:
+let
+  python = python313;
+  pyVersion = "3.13";
+in
 mkShell {
   name = "riptide";
 
   packages =
     # PYTHON
-    [ python312 ]
+    [ python ]
     ++ (
-      with python312.pkgs;
+      with python.pkgs;
       [
         pip
         setuptools
         setuptools-rust
         certauth
-	tox
-	pytest
+        tox
+        pytest
       ]
-      ++ lib.optionals (stdenv.isLinux) [ (callPackage ./pkgs/_forks/python-prctl.nix { }) ]
+      ++ lib.optionals (stdenv.isLinux) [ python.pkgs.python-prctl ]
     )
     ++
       # # RUST
@@ -49,7 +53,7 @@ mkShell {
     ## OTHER
     ++ [ stdenv.cc.cc.lib ];
 
-  # Expsose venv for simpler integration with editors & IDEs.
+  # Expose venv for simpler integration with editors & IDEs.
   # This should be enough for IDEs & LSPs but may not be enough to run
   # riptide by just activating the venv!
   shellHook = ''
@@ -59,14 +63,14 @@ mkShell {
     VENV=~/.riptide_venv
 
     if test ! -d $VENV; then
-      python3.12 -m venv $VENV
+      python${pyVersion} -m venv $VENV
     fi
     source $VENV/bin/activate
-    export PYTHONPATH=`pwd`/$VENV/${python312.sitePackages}/:$PYTHONPATH
+    export PYTHONPATH=`pwd`/$VENV/${python.sitePackages}/:$PYTHONPATH
     # Link all packages
     ( IFS=:
       for p in $PYTHONPATH; do
-          ln -sf $p/* $VENV/lib/python3.12/site-packages 2> /dev/null
+          ln -sf $p/* $VENV/lib/python${pyVersion}/site-packages 2> /dev/null
       done
     )
     export IN_NIX_SHELL="riptide"

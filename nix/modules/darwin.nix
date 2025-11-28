@@ -24,12 +24,10 @@ in
 {
   options = (import ./options.nix) {
     inherit lib;
-    inherit (pkgs) formats python312Packages;
+    inherit (pkgs) formats;
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [ (import ../overlay.nix) ];
-
     launchd.user.agents.activate-riptide = {
       script = ''
         set -e

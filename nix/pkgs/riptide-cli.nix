@@ -5,21 +5,21 @@
 
   riptide-lib,
   click,
-  colorama,
+  rich,
   click-help-colors,
-  tqdm,
+  setproctitle,
   packaging,
 }:
 
 buildPythonPackage rec {
   pname = "riptide-cli";
-  version = "0.9.0";
+  version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-cli.git";
     ref = "refs/tags/${version}";
-    rev = "590dbb948c9385ac88fde534dc4790fb3f8da89b";
+    rev = "c47a003c36b19aeb6eb9d397fc1d14cf9c8272bf";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -27,9 +27,9 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     riptide-lib
     click
-    colorama
+    rich
     click-help-colors
-    tqdm
+    setproctitle
     packaging
   ];
 
@@ -42,15 +42,21 @@ buildPythonPackage rec {
 
   # Remove the original hook scripts, since they will be wrapped by python.buildEnv. Instead
   # provide nix-riptide.hook.* variants that echo out the hooks when executed.
+  # Also output the shell completion of Riptide
   postFixup = ''
     COMMON_HOOK_SRC=$(cat $out/bin/riptide.hook.common.sh)
     BASH_HOOK_SRC="$COMMON_HOOK_SRC $(cat $out/bin/riptide.hook.bash | grep -v 'riptide.hook.common.sh')"
     ZSH_HOOK_SRC="$COMMON_HOOK_SRC $(cat $out/bin/riptide.hook.zsh | grep -v 'riptide.hook.common.sh')"
 
+    BASH_COMP_SRC=$(_RIPTIDE_COMPLETE=bash_source "$out/bin/riptide")
+    ZSH_COMP_SRC=$(_RIPTIDE_COMPLETE=zsh_source "$out/bin/riptide")
+
     echo '#!/usr/bin/env bash' > $out/bin/nix-riptide.hook.bash
     printf 'cat <<'"'"'EOF'"'" >> $out/bin/nix-riptide.hook.bash
     echo ' '>> $out/bin/nix-riptide.hook.bash
     echo "$BASH_HOOK_SRC">> $out/bin/nix-riptide.hook.bash
+    echo ' '  >> $out/bin/nix-riptide.hook.bash
+    echo "$BASH_COMP_SRC">> $out/bin/nix-riptide.hook.bash
     echo 'EOF' >> $out/bin/nix-riptide.hook.bash
     chmod +x $out/bin/nix-riptide.hook.bash
 
@@ -58,6 +64,8 @@ buildPythonPackage rec {
     printf 'cat <<'"'"'EOF'"'" >> $out/bin/nix-riptide.hook.zsh
     echo ' '>> $out/bin/nix-riptide.hook.zsh
     echo "$ZSH_HOOK_SRC">> $out/bin/nix-riptide.hook.zsh
+    echo ' '  >> $out/bin/nix-riptide.hook.zsh
+    echo "$ZSH_COMP_SRC">> $out/bin/nix-riptide.hook.zsh
     echo 'EOF' >> $out/bin/nix-riptide.hook.zsh
     chmod +x $out/bin/nix-riptide.hook.zsh
 

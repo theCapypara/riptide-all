@@ -8,17 +8,17 @@
   click,
   tornado,
   _riptide_certauth,
-  _riptide_python-prctl,
+  python-prctl,
 }:
 buildPythonPackage rec {
   pname = "riptide-proxy";
-  version = "0.9.1";
+  version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-proxy.git";
     ref = "refs/tags/${version}";
-    rev = "a81b084625aef4165fee119b81c0bc7605aac42c";
+    rev = "b26e56dad19bb70e6abbda5a01f3ec3a6ef792de";
   };
 
   nativeBuildInputs = [ setuptools ];
@@ -28,7 +28,7 @@ buildPythonPackage rec {
     tornado
     click
     _riptide_certauth
-  ] ++ lib.optionals (stdenv.isLinux) [ _riptide_python-prctl ];
+  ] ++ lib.optionals (stdenv.isLinux) [ python-prctl ];
 
   doCheck = false;
   pythonImportsCheck = [ "riptide_proxy" ];
