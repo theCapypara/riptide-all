@@ -7,16 +7,15 @@
   schema,
 }:
 
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "riptide-db-mysql";
   version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-db-mysql.git";
-    # TODO
-    #ref = "refs/tags/${version}";
-    rev = "7b00b4eb243f807677e4d7ed0924dd618f5ad500";
+    ref = "refs/tags/${version}";
+    rev = "d815940a9627d027cbbc7445ff2d696c9d516a9e";
   };
 
   nativeBuildInputs = [ setuptools ];

@@ -7,16 +7,15 @@
   schema,
 }:
 
-buildPythonPackage {
+buildPythonPackage rec {
   pname = "riptide-db-mongo";
   version = "0.10.0";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-db-mongo.git";
-    # TODO
-    #ref = "refs/tags/${version}";
-    rev = "dc077580846489db9f9b1a4b5512d5e027522d2d";
+    ref = "refs/tags/${version}";
+    rev = "7b196bdeb838f1e85d5da876a3ab9ebc3ed2855f";
   };
 
   nativeBuildInputs = [ setuptools ];
