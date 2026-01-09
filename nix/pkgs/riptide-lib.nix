@@ -16,13 +16,13 @@
 
 buildPythonPackage rec {
   pname = "riptide-lib";
-  version = "0.10.0";
+  version = "0.10.1";
   pyproject = true;
 
   src = fetchGit {
     url = "https://github.com/theCapypara/riptide-lib.git";
     ref = "refs/tags/${version}";
-    rev = "12d9a32f6b38d21c734e5ce992c17ebbe67d595b";
+    rev = "644cf41c879e2972cb577ba162d92d4e17762fb2";
   };
 
   nativeBuildInputs = [ setuptools ];
