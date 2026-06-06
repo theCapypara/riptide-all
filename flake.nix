@@ -2,7 +2,7 @@
   description = "Riptide - Tool to manage development environments for web applications using containers";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,20 +34,20 @@
         in
         {
           packages = {
-            python = pkgs.python313;
+            python = pkgs.python314;
 
-            configcrunch = pkgs.python313Packages.configcrunch;
-            riptide-lib = pkgs.python313Packages.riptide-lib;
-            riptide-cli = pkgs.python313Packages.riptide-cli;
-            riptide-proxy = pkgs.python313Packages.riptide-proxy;
-            riptide-engine-docker = pkgs.python313Packages.riptide-engine-docker;
-            riptide-engine-dummy = pkgs.python313Packages.riptide-engine-dummy;
-            riptide-db-mongo = pkgs.python313Packages.riptide-db-mongo;
-            riptide-db-mysql = pkgs.python313Packages.riptide-db-mysql;
-            riptide-plugin-php-xdebug = pkgs.python313Packages.riptide-plugin-php-xdebug;
-            riptide-all = pkgs.python313Packages.riptide-all;
+            configcrunch = pkgs.python314Packages.configcrunch;
+            riptide-lib = pkgs.python314Packages.riptide-lib;
+            riptide-cli = pkgs.python314Packages.riptide-cli;
+            riptide-proxy = pkgs.python314Packages.riptide-proxy;
+            riptide-engine-docker = pkgs.python314Packages.riptide-engine-docker;
+            riptide-engine-dummy = pkgs.python314Packages.riptide-engine-dummy;
+            riptide-db-mongo = pkgs.python314Packages.riptide-db-mongo;
+            riptide-db-mysql = pkgs.python314Packages.riptide-db-mysql;
+            riptide-plugin-php-xdebug = pkgs.python314Packages.riptide-plugin-php-xdebug;
+            riptide-all = pkgs.python314Packages.riptide-all;
 
-            default = pkgs.python313Packages.riptide-all;
+            default = pkgs.python314Packages.riptide-all;
           };
 
           formatter = pkgs.nixfmt-tree;
@@ -67,11 +67,19 @@
               imports = [ riptideModule ];
               services.riptide = {
                 cli.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-cli;
-                dbDrivers.mysql.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-db-mysql;
-                dbDrivers.mongodb.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-db-mongo;
-                plugins.phpXdebug.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-plugin-php-xdebug;
+                dbDrivers.mysql.package =
+                  lib.mkDefault
+                    self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-db-mysql;
+                dbDrivers.mongodb.package =
+                  lib.mkDefault
+                    self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-db-mongo;
+                plugins.phpXdebug.package =
+                  lib.mkDefault
+                    self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-plugin-php-xdebug;
                 proxy.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-proxy;
-                engine.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-engine-docker;
+                engine.package =
+                  lib.mkDefault
+                    self.packages.${pkgs.stdenv.hostPlatform.system}.riptide-engine-docker;
                 python = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.python;
               };
             };
@@ -133,10 +141,9 @@
                         ];
                       }).system;
                   }
-                  # TODO: doesn't work yet: // (makePkgsChecks system "314")
+                  // (makePkgsChecks system "314")
                   // (makePkgsChecks system "313")
                   // (makePkgsChecks system "312")
-                  // (makePkgsChecks system "311")
                 )
               )
             )
@@ -154,10 +161,9 @@
                       flake = self;
                     };
                   }
-                  # TODO: doesn't work yet: // (makePkgsChecks system "314")
+                  // (makePkgsChecks system "314")
                   // (makePkgsChecks system "313")
                   // (makePkgsChecks system "312")
-                  // (makePkgsChecks system "311")
                 )
               )
             );

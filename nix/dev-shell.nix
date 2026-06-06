@@ -1,6 +1,6 @@
 {
   mkShell,
-  python313,
+  python314,
   cargo,
   rustc,
   rustfmt,
@@ -15,8 +15,8 @@
   lib,
 }:
 let
-  python = python313;
-  pyVersion = "3.13";
+  python = python314;
+  pyVersion = "3.14";
 in
 mkShell {
   name = "riptide";

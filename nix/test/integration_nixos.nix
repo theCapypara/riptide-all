@@ -123,7 +123,7 @@ pkgs.testers.nixosTest {
       system1.wait_for_file("/tmp/3b")
       system1.sleep(5)
       output = system1.succeed("cat /tmp/3b")
-      assert "riptide:" in output, f"output: {output}"
+      assert "Riptide shell integration not enabled." in output, f"output: {output}"
 
       system1.succeed("systemctl is-active --quiet dnsmasq")
       system1.sleep(20)
